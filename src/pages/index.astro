@@ -163,17 +163,35 @@ const schemas = [
   </section>
 
   <!-- ════════ PARTNERS ════════ -->
-  <section class="partners">
+  <section class="partners" id="partnerzy">
     <div class="container container--wide">
-      <div class="partners__inner">
-        <span class="label" data-reveal="left">Partnerzy</span>
-        <div class="partners__logos" data-reveal-stagger>
-          <div class="partners__logo-placeholder"></div>
-          <div class="partners__logo-placeholder"></div>
-          <div class="partners__logo-placeholder"></div>
-          <div class="partners__logo-placeholder"></div>
+      <span class="label" data-reveal="left">Partnerzy i eksperci</span>
+      <h2 class="partners__title" data-reveal>Ludzie, którzy tworzą mysource</h2>
+    </div>
+    <div class="partners__track">
+      {[
+        { name: 'dr Iwo Zmyślony', role: 'Projektant zmiany i kultury innowacji', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/684afe6e590d434aa09ac4e7_Projekt%20bez%20nazwy%20(89).png' },
+        { name: 'Adam Kowalewski', role: 'Psycholog, biohacker', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/66aa6a4241e2b2382ff3a870_kowalewski_nb_512.png' },
+        { name: 'Zuzanna Ziomecka', role: 'Dziennikarka, trenerka redukcji stresu', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/66aa6a4241e2b2382ff3a872_ziomecka_nb_512.png' },
+        { name: 'Julian Dworak', role: 'Coach przywództwa i zmiany', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/673f004151a3208730ed4c08_Wype%C5%82nienie%20kolorem%205512.png' },
+        { name: 'Jakub Mauricz', role: 'Dietetyk, ekspert żywienia', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/66aa6a4241e2b2382ff3a86f_mauricz_nb_512.png' },
+        { name: 'Mila Orlińska', role: 'Ekspertka trenowania umysłu, iMIND', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/66e884df080060a11a4f6672_mila_orlinska_512.png' },
+        { name: 'Piotr Matejuk', role: 'Hipnoterapeuta, doktorant PAN', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/66e884df9589e58c0c0ea7dc_matejuk_1024.png' },
+        { name: 'Dorota Szczepan-Jakubowska', role: 'Psycholożka biznesu, grupa TROP', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/673eff8f9fb51c650f6d7e47_dorota_szj.png' },
+        { name: 'Filip Dębowski', role: 'Technohumanista, psychologia × technologia', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/6973f563a5f6f7d103440924_Filip%20De%CC%A8bowski.png' },
+        { name: 'lek. med. Elżbieta Dudzińska', role: 'Terapie oddechowe, Metoda Buteyko', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/673f0043c40da38d8b055bb7_Warstwa%2022512.png' },
+        { name: 'dr Asia Kubiakowska', role: 'Praca somatyczna, oddech i uważność', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/673f121c47c93ea062a75f96_Wype%C5%82nienie%20kolorem%205%20kopia%202512.png' },
+        { name: 'Kalina Pieczyńska', role: 'Trenerka kompetencji interpersonalnych', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/66aa6a4241e2b2382ff3a86e_pieczynska_nb_512.png' },
+        { name: 'Edyta Maksimowicz', role: 'Autorka metody Facemovement', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/673f121b5f3bb2d0e8367f8d_Warstwa%2022%20kopia512.png' },
+        { name: 'Linda Parys', role: 'Trenerka kreatywności, LEGO® SERIOUS PLAY®', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/67565e7adf4c47e4272504a4_lindaparys512.png' },
+        { name: 'Olga Sochanek', role: 'Trenerka oddechu, PSYCHEDELIC BREATH®', img: 'https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b/673f150ba4ec25576531d46f_Wype%C5%82nienie%20kolorem%205%20kopia512.png' },
+      ].map((p) => (
+        <div class="partner-card">
+          <img src={p.img} alt={p.name} class="partner-card__img" loading="lazy" width="280" height="280" />
+          <p class="partner-card__name">{p.name}</p>
+          <p class="partner-card__role">{p.role}</p>
         </div>
-      </div>
+      ))}
     </div>
   </section>
 
@@ -418,34 +436,59 @@ const schemas = [
 
   /* ─── Partners ─── */
   .partners {
-    padding-block: var(--space-4xl);
+    padding-block: var(--space-5xl);
     background-color: var(--cream);
+    overflow: hidden;
   }
 
-  .partners__inner {
+  .partners__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .partners__track {
     display: flex;
-    align-items: center;
-    gap: var(--space-3xl);
+    gap: var(--space-xl);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 var(--content-padding) var(--space-xl);
+    scrollbar-width: none;
   }
 
-  .partners__logos {
-    display: flex;
-    gap: var(--space-2xl);
-    flex-wrap: wrap;
-    align-items: center;
+  .partners__track::-webkit-scrollbar {
+    display: none;
   }
 
-  .partners__logo-placeholder {
-    width: 140px;
-    height: 50px;
-    background: var(--sand);
-    border-radius: var(--radius-sm);
-    opacity: 0.3;
-    transition: opacity 0.3s ease;
+  .partner-card {
+    flex: 0 0 240px;
+    scroll-snap-align: start;
   }
 
-  .partners__logo-placeholder:hover {
-    opacity: 0.6;
+  .partner-card__img {
+    width: 240px;
+    height: 240px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    background: var(--sand-light);
+    margin-bottom: var(--space-md);
+  }
+
+  .partner-card__name {
+    font-size: var(--text-sm);
+    font-weight: 400;
+    line-height: 1.3;
+  }
+
+  .partner-card__role {
+    font-size: var(--text-xs);
+    color: var(--grey);
+    line-height: 1.5;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: var(--space-xs);
   }
 
   /* ─── Responsive ─── */
@@ -473,9 +516,13 @@ const schemas = [
       gap: var(--space-xl);
     }
 
-    .partners__inner {
-      flex-direction: column;
-      align-items: flex-start;
+    .partner-card {
+      flex: 0 0 200px;
+    }
+
+    .partner-card__img {
+      width: 200px;
+      height: 200px;
     }
   }
 </style>
