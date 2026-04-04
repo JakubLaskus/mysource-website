@@ -6,6 +6,7 @@ export interface Path {
   curatorId: string;
   curatorName: string;
   category: 'wellbeing' | 'tech-transform' | 'leadership';
+  videoId?: string;
 }
 
 export interface PathCategory {
@@ -37,6 +38,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-rownowaga',
         curatorName: 'Zuzanna Ziomecka',
         category: 'wellbeing',
+        videoId: 'jfC8eDYtwCE',
       },
       {
         id: 'regeneracja',
@@ -47,6 +49,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-regeneracja',
         curatorName: 'Adam Kowalewski',
         category: 'wellbeing',
+        videoId: '6epd051lEv0',
       },
       {
         id: 'odzywianie',
@@ -57,6 +60,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-odzywianie',
         curatorName: 'Jakub Mauricz',
         category: 'wellbeing',
+        videoId: 'J_dOfAyo5Mo',
       },
     ],
   },
@@ -88,6 +92,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-mindset',
         curatorName: 'dr Iwo Zmyślony',
         category: 'tech-transform',
+        videoId: 'NE6GDP2ZzxQ',
       },
       {
         id: 'transformacja',
@@ -98,6 +103,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-transformacja',
         curatorName: 'Mila Orliska',
         category: 'tech-transform',
+        videoId: '2uJiScqjIl0',
       },
       {
         id: 'sprawczosc',
@@ -129,6 +135,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-samoswiadomosc',
         curatorName: 'Dorota Szczepan-Jakubowska',
         category: 'leadership',
+        videoId: 'Tc54SpIEkwE',
       },
       {
         id: 'podswiadomosc',
@@ -139,6 +146,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-podswiadomosc',
         curatorName: 'Piotr Matejuk',
         category: 'leadership',
+        videoId: 'dlZsjl2ckPo',
       },
       {
         id: 'relacje',
@@ -149,6 +157,7 @@ export const pathCategories: PathCategory[] = [
         curatorId: 'curator-relacje',
         curatorName: 'Julian Dworak',
         category: 'leadership',
+        videoId: 'eUq_HnYgqGk',
       },
     ],
   },

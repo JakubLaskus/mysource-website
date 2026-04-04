@@ -1,0 +1,372 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Newsletter from '../components/Newsletter.astro';
+
+const schemas = [
+  {
+    type: 'breadcrumb' as const,
+    data: {
+      items: [
+        { name: 'Strona główna', url: 'https://www.mysource.pl/' },
+        { name: 'Studio', url: 'https://www.mysource.pl/studio' },
+      ],
+    },
+  },
+];
+
+const spaces = [
+  { label: '250m²', desc: 'otwarta przestrzeń warsztatowa' },
+  { label: '30m²', desc: 'sala szkoleniowo-konferencyjna' },
+  { label: '15m²', desc: 'garderoba' },
+  { label: 'Kuchnia', desc: 'otwarta z wyspą' },
+  { label: '2×', desc: 'łazienki' },
+  { label: 'Strefa', desc: 'socjalna i wypoczynkowa' },
+];
+
+const features = [
+  'Nowoczesna klimatyzacja',
+  'Profesjonalny system nagłośnienia',
+  'Pełne zaciemnienie',
+  'Systemy audiowizualne z TV i projektorem',
+];
+
+const pricing = [
+  { label: 'Do 20 osób', price: 'od 1 500 PLN netto' },
+  { label: 'Do 80 osób', price: 'od 3 500 PLN netto' },
+  { label: 'Poniżej 10 osób', price: 'wycena indywidualna' },
+  { label: 'Sesje foto / nagrania', price: 'wycena indywidualna' },
+];
+---
+
+<BaseLayout
+  title="Studio — 300m² przestrzeni rozwojowej w Koneserze | Mysource"
+  description="300m² harmonijnie zaprojektowanej przestrzeni w sercu warszawskiego Konesera. Warsztaty, szkolenia, medytacja, eventy. Wynajem z opieką managera studia."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="studio-hero">
+    <div class="container container--wide">
+      <span class="label" data-reveal="none">Nasza przestrzeń</span>
+      <h1 class="studio-hero__title" data-reveal-words data-reveal-delay="100">Studio</h1>
+      <div class="studio-hero__grid">
+        <div class="studio-hero__lead" data-reveal data-reveal-delay="250">
+          <p class="font-display studio-hero__statement">
+            Tworzymy miejsce, które możesz wypełnić własnym doświadczeniem, postawić na rozwój osobisty i praktykowanie programów wspierających dobrostan.
+          </p>
+        </div>
+        <div class="studio-hero__right" data-reveal data-reveal-delay="400">
+          <p class="text-muted">
+            300m² harmonijnie zaprojektowanej przestrzeni w sercu wydarzeń, chroniącej jednocześnie przed miejskim hałasem. Przestrzeń na twórcze działanie, medytację, ćwiczenia i odpoczynek.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PRZESTRZEŃ ════════ -->
+  <section class="studio-space">
+    <div class="container container--wide">
+      <div class="studio-space__header">
+        <span class="label" data-reveal="left">Przestrzeń</span>
+        <h2 class="studio-space__title" data-reveal>300m² na Twoje potrzeby</h2>
+      </div>
+      <div class="studio-space__grid" data-reveal-stagger>
+        {spaces.map((s) => (
+          <div class="space-card">
+            <p class="space-card__label font-display">{s.label}</p>
+            <p class="space-card__desc">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ WYPOSAŻENIE ════════ -->
+  <section class="studio-features section--deep">
+    <div class="container container--wide">
+      <div class="studio-features__grid">
+        <div class="studio-features__left" data-reveal="left">
+          <span class="label">Wyposażenie</span>
+          <h2 class="studio-features__title">Profesjonalne zaplecze techniczne</h2>
+        </div>
+        <div class="studio-features__right" data-reveal-stagger>
+          {features.map((f) => (
+            <div class="feature-item">
+              <span class="feature-item__icon">→</span>
+              <p class="feature-item__text">{f}</p>
+            </div>
+          ))}
+          <p class="studio-features__note text-muted">
+            Oferujemy swobodę i elastyczność w wynajmie oraz kompleksową opiekę managera studia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CENNIK ════════ -->
+  <section class="studio-pricing">
+    <div class="container container--wide">
+      <div class="studio-pricing__header">
+        <span class="label" data-reveal="left">Cennik</span>
+        <h2 class="studio-pricing__title" data-reveal>Wynajem przestrzeni</h2>
+      </div>
+      <div class="studio-pricing__grid" data-reveal-stagger>
+        {pricing.map((p) => (
+          <div class="pricing-card">
+            <p class="pricing-card__label">{p.label}</p>
+            <p class="pricing-card__price font-display">{p.price}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ LOKALIZACJA ════════ -->
+  <section class="studio-location">
+    <div class="container container--wide">
+      <div class="studio-location__grid">
+        <div class="studio-location__left" data-reveal="left">
+          <span class="label">Lokalizacja</span>
+          <h2 class="studio-location__title">Centrum Praskie Koneser</h2>
+          <p class="studio-location__address">
+            Plac Konesera 6<br />
+            Budynek E3, lokal B1<br />
+            Warszawa
+          </p>
+          <p class="text-muted studio-location__note">
+            Znajdujemy się na terenie Centrum Praskiego Koneser. Wejście naprzeciwko Pasażu Konesera.
+          </p>
+        </div>
+        <div class="studio-location__right" data-reveal>
+          <p class="studio-location__contact">
+            <span class="label">Kontakt</span>
+            <a href="mailto:mysource@mysource.pl" class="studio-location__email">mysource@mysource.pl</a>
+          </p>
+          <a href="/kontakt" class="btn btn--ember">Umów wizytę</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <CTA variant="cream" />
+
+  <!-- ════════ NEWSLETTER ════════ -->
+  <Newsletter variant="sand" />
+</BaseLayout>
+
+<style>
+  /* ─── Hero ─── */
+  .studio-hero {
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-4xl);
+    background-color: var(--cream);
+  }
+
+  .studio-hero__title {
+    font-size: var(--text-6xl);
+    font-family: var(--font-display-light);
+    font-weight: 400;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .studio-hero__grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .studio-hero__statement {
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* ─── Przestrzeń ─── */
+  .studio-space {
+    padding: var(--space-5xl) 0;
+  }
+
+  .studio-space__header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .studio-space__title {
+    font-size: var(--text-4xl);
+    margin-top: var(--space-md);
+  }
+
+  .studio-space__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .space-card {
+    padding: var(--space-xl);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+  }
+
+  .space-card__label {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-sm);
+    color: var(--ink);
+  }
+
+  .space-card__desc {
+    color: var(--grey);
+    font-size: var(--text-sm);
+  }
+
+  /* ─── Features ─── */
+  .studio-features {
+    padding: var(--space-5xl) 0;
+    background-color: var(--deep);
+    color: var(--cream);
+  }
+
+  .studio-features__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-3xl);
+  }
+
+  .studio-features__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-md);
+    color: var(--cream);
+  }
+
+  .feature-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: baseline;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .feature-item__icon {
+    color: var(--ember);
+    font-size: var(--text-lg);
+    flex-shrink: 0;
+  }
+
+  .feature-item__text {
+    font-size: var(--text-lg);
+  }
+
+  .studio-features__note {
+    margin-top: var(--space-xl);
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .studio-features .label {
+    color: var(--ember);
+  }
+
+  /* ─── Pricing ─── */
+  .studio-pricing {
+    padding: var(--space-5xl) 0;
+  }
+
+  .studio-pricing__header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .studio-pricing__title {
+    font-size: var(--text-4xl);
+    margin-top: var(--space-md);
+  }
+
+  .studio-pricing__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .pricing-card {
+    padding: var(--space-xl);
+    border: 1px solid var(--sand);
+    border-radius: 8px;
+  }
+
+  .pricing-card__label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: var(--text-xs);
+    color: var(--grey);
+    margin-bottom: var(--space-sm);
+  }
+
+  .pricing-card__price {
+    font-size: var(--text-2xl);
+    color: var(--ink);
+  }
+
+  /* ─── Location ─── */
+  .studio-location {
+    padding: var(--space-5xl) 0;
+    background-color: var(--cream);
+  }
+
+  .studio-location__grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-3xl);
+  }
+
+  .studio-location__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .studio-location__address {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    margin-bottom: var(--space-lg);
+  }
+
+  .studio-location__contact {
+    margin-bottom: var(--space-xl);
+  }
+
+  .studio-location__email {
+    display: block;
+    font-size: var(--text-2xl);
+    font-family: var(--font-display);
+    color: var(--ink);
+    text-decoration: none;
+    margin-top: var(--space-md);
+    transition: color 0.3s ease;
+  }
+
+  .studio-location__email:hover {
+    color: var(--ember);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .studio-hero__grid,
+    .studio-features__grid,
+    .studio-location__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+    }
+
+    .studio-space__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .studio-pricing__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

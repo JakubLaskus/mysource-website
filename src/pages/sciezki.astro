@@ -57,6 +57,11 @@ const sectionBgs: Record<string, string> = {
         </p>
       </div>
     </div>
+    <div class="sciezki-hero__video" data-reveal>
+      <video autoplay muted loop playsinline>
+        <source src="https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b%2F67990882d7c8380f977ff66c_20250301_MY%20SOURCE_TRAILER_Master_v2_small_KRL_15-transcode.mp4" type="video/mp4" />
+      </video>
+    </div>
   </section>
 
   <!-- ════════ ŚCIEŻKI PO KATEGORIACH ════════ -->
@@ -92,6 +97,17 @@ const sectionBgs: Record<string, string> = {
                 </div>
                 <h3 class="path-card__title">{path.title}</h3>
                 <p class="path-card__desc">{path.description}</p>
+                {path.videoId && (
+                  <div class="path-card__video">
+                    <iframe
+                      src={`https://www.youtube.com/embed/${path.videoId}?rel=0`}
+                      title={`${path.title} — video`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen
+                      loading="lazy"
+                    ></iframe>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -179,6 +195,21 @@ const sectionBgs: Record<string, string> = {
     max-width: none;
   }
 
+  .sciezki-hero__video {
+    margin-top: var(--space-3xl);
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 21 / 9;
+    background: var(--ink);
+  }
+
+  .sciezki-hero__video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
   /* ─── Path cards ─── */
   .cat-section__paths {
     display: grid;
@@ -236,6 +267,20 @@ const sectionBgs: Record<string, string> = {
     font-size: var(--text-sm);
     line-height: 1.7;
     color: var(--grey);
+  }
+
+  .path-card__video {
+    margin-top: var(--space-lg);
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .path-card__video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
   /* ─── Responsive ─── */

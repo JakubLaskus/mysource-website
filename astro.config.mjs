@@ -9,15 +9,8 @@ const isProd = process.env.NODE_ENV === 'production' || process.argv.includes('b
 
 export default defineConfig({
   site: 'https://www.mysource.pl',
-  ...(isProd
-    ? {
-        adapter: cloudflare({
-          platformProxy: { enabled: true },
-        }),
-      }
-    : {
-        output: 'server',
-      }),
+  output: 'server',
+  ...(isProd ? { adapter: cloudflare({ platformProxy: { enabled: true } }) } : {}),
   integrations: [
     react(),
     keystatic(),
