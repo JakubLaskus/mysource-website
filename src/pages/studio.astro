@@ -48,18 +48,22 @@ const pricing = [
   <section class="studio-hero">
     <div class="container container--wide">
       <span class="label" data-reveal="none">Nasza przestrzeń</span>
-      <h1 class="studio-hero__title" data-reveal-words data-reveal-delay="100">Studio</h1>
-      <div class="studio-hero__grid">
-        <div class="studio-hero__lead" data-reveal data-reveal-delay="250">
-          <p class="font-display studio-hero__statement">
-            Tworzymy miejsce, które możesz wypełnić własnym doświadczeniem, postawić na rozwój osobisty i praktykowanie programów wspierających dobrostan.
-          </p>
-        </div>
-        <div class="studio-hero__right" data-reveal data-reveal-delay="400">
-          <p class="text-muted">
-            300m² harmonijnie zaprojektowanej przestrzeni w sercu wydarzeń, chroniącej jednocześnie przed miejskim hałasem. Przestrzeń na twórcze działanie, medytację, ćwiczenia i odpoczynek.
-          </p>
-        </div>
+      <h1 class="studio-hero__title" data-reveal-words data-reveal-delay="100">
+        Tworzymy miejsce, które możesz wypełnić własnym doświadczeniem, postawić na rozwój osobisty i&nbsp;praktykowanie programów wspierających dobrostan.
+      </h1>
+      <div class="studio-hero__grid" data-reveal data-reveal-delay="250">
+        <p>
+          Studio mysource to 300m² harmonijnie zaprojektowanej przestrzeni zlokalizowanej w sercu wydarzeń, a jednocześnie chroniącej przed zgiełkiem miasta.
+        </p>
+        <p>
+          To tutaj możesz swobodnie oddać się pracy kreatywnej, medytować, ćwiczyć i odpoczywać — wszystko w zgodzie ze swoim rytmem i potrzebami.
+        </p>
+        <p>
+          Stworzyliśmy to miejsce z myślą o uwzględnieniu różnorodnych potrzeb funkcjonalnych — dlatego z powodzeniem zorganizujesz u nas małe, kameralne wydarzenie, jak i całkiem duży event.
+        </p>
+        <p>
+          W ramach współpracy zapewniamy swobodę i elastyczność w wynajmie, kompleksową opiekę managera studia, a przede wszystkim — elegancką przestrzeń, którą pomożemy Ci dowolnie zaaranżować!
+        </p>
       </div>
     </div>
     <div class="studio-hero__photo" data-reveal>
@@ -169,25 +173,27 @@ const pricing = [
   }
 
   .studio-hero__title {
-    font-size: var(--text-6xl);
-    font-family: var(--font-display-light);
+    font-size: var(--text-5xl);
+    font-family: var(--font-display);
     font-weight: 400;
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: var(--space-3xl);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-4xl);
+    max-width: none;
   }
 
   .studio-hero__grid {
     display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: var(--space-3xl);
-    align-items: start;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl) var(--space-3xl);
   }
 
-  .studio-hero__statement {
-    font-size: var(--text-2xl);
-    font-weight: 400;
-    line-height: 1.4;
+  .studio-hero__grid p {
+    font-size: var(--text-base);
+    line-height: 1.7;
+    color: var(--grey);
+    max-width: none;
   }
 
   .studio-hero__photo {
