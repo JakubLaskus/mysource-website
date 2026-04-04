@@ -1,13 +1,4 @@
-name = "# wrangler.toml
-name = mysource-website
+name = "mysource-website"
+pages_build_output_dir = "./dist"
 compatibility_date = "2024-12-01"
 compatibility_flags = ["nodejs_compat"]
-
-# Assets (replaces deprecated [site])
-[assets]
-directory = "./dist/client"
-
-# KV namespace for potential future use (caching, analytics)
-# [[kv_namespaces]]
-# binding = "MYSOURCE_KV"
-# id = "your-kv-id-here"
