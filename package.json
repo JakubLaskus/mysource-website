@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node -e \"const f='dist/server/wrangler.json';const d=JSON.parse(require('fs').readFileSync(f,'utf8'));if(d.assets&&d.assets.binding==='ASSETS'){d.assets.binding='SITE_ASSETS'}require('fs').writeFileSync(f,JSON.stringify(d))\"",
+    "build": "astro build && node -e \"const f='dist/server/wrangler.json';const d=JSON.parse(require('fs').readFileSync(f,'utf8'));if(d.assets&&d.assets.binding==='ASSETS'){d.assets.binding='SITE_ASSETS'}d.pages_build_output_dir='../';require('fs').writeFileSync(f,JSON.stringify(d))\"",
     "preview": "astro preview",
     "astro": "astro"
   },
