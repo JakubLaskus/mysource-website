@@ -20,7 +20,7 @@ export default defineConfig({
       }),
   integrations: [
     react(),
-    ...(!isProd ? [keystatic()] : []),
+    keystatic(),
     sitemap({
       i18n: { defaultLocale: 'pl', locales: { pl: 'pl-PL' } },
     }),

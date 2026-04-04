@@ -47,6 +47,10 @@ const schemas = [
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
       </div>
     </div>
+    <!-- Full-bleed video/animation slot -->
+    <div class="hero__media" data-reveal>
+      <video class="hero__video" autoplay muted loop playsinline poster="/images/photos/team-photo.jpg" src="https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b%2F67990446b15b73b11162be7b_426_MY_SOURCE_SHORT_online_15_01_2025_1080p_eug_38_web-transcode.mp4"></video>
+    </div>
   </section>
 
   <!-- ════════ MANIFESTO ════════ -->
@@ -155,15 +159,6 @@ const schemas = [
 
       <div data-reveal-line style="color: var(--sand); margin-bottom: var(--space-3xl);"></div>
 
-      <div class="misja__founders" data-reveal-stagger>
-        {founders.map((member) => (
-          <div class="misja__person">
-            <img src={member.image} alt={member.name} class="misja__avatar" width="144" height="144" loading="lazy" />
-            <p class="misja__person-name">{member.name}</p>
-            <p class="misja__person-role text-muted">{member.role}</p>
-          </div>
-        ))}
-      </div>
     </div>
   </section>
 
@@ -199,6 +194,22 @@ const schemas = [
     display: block;
     margin-bottom: var(--space-xl);
     color: var(--grey);
+    font-size: var(--text-sm);
+  }
+
+  .hero__media {
+    width: 100%;
+    aspect-ratio: 21 / 9;
+    overflow: hidden;
+    background-color: var(--ink);
+    margin-top: var(--space-4xl);
+  }
+
+  .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .hero__title {
@@ -302,8 +313,8 @@ const schemas = [
   }
 
   .services__item-title {
-    font-size: var(--text-3xl);
-    line-height: 1.2;
+    font-size: var(--text-4xl);
+    line-height: 1.15;
     margin-bottom: var(--space-lg);
   }
 
