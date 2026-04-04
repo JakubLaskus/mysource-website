@@ -1,0 +1,470 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { founders } from '../data/team';
+
+const schemas = [
+  {
+    type: 'service' as const,
+    data: {
+      '@id': 'https://www.mysource.pl/#lab',
+      name: 'Mysource LAB - Szkolenia i warsztaty',
+      description: 'Szkolenia i warsztaty dla pracowników i liderów. Wellbeing, transformacja technologiczna, przywództwo.',
+      serviceType: 'Training',
+      url: 'https://www.mysource.pl/oferta',
+    },
+  },
+  {
+    type: 'service' as const,
+    data: {
+      '@id': 'https://www.mysource.pl/#ai-readiness',
+      name: 'AI Readiness - RADAR diagnostyka transformacji AI',
+      description: 'Kompleksowe narzędzie diagnostyczne badające gotowość organizacji do transformacji AI z perspektywy ludzi.',
+      serviceType: 'Consulting',
+      url: 'https://www.mysource.pl/o-nas',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Mysource — Ludzki wymiar transformacji technologicznej"
+  description="Przygotowujemy organizacje na przyszłość poprzez budowanie ludzkiej gotowości: fizycznej, psychicznej i poznawczej. Szkolenia, diagnostyka AI RADAR, programy wellbeingowe."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="hero">
+    <div class="container container--wide">
+      <span class="hero__label label" data-reveal="none">mysource</span>
+      <h1 class="hero__title" data-reveal-words data-reveal-delay="100">
+        Ludzki wymiar transformacji technologicznej
+      </h1>
+      <p class="hero__lead" data-reveal data-reveal-delay="400">
+        Przygotowujemy organizacje na przyszłość poprzez budowanie ludzkiej gotowości — fizycznej, psychicznej i poznawczej.
+      </p>
+      <div class="hero__scroll-hint scroll-indicator" data-reveal="none" data-reveal-delay="800">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ MANIFESTO ════════ -->
+  <section class="manifesto">
+    <div class="container container--wide">
+      <div class="manifesto__grid">
+        <div class="manifesto__left" data-reveal="left">
+          <span class="label">Idea</span>
+        </div>
+        <div class="manifesto__right">
+          <div class="reveal-clip">
+            <p class="manifesto__statement font-display" data-reveal="clip-up">
+              W świecie, gdzie każda firma ma dostęp do tych samych narzędzi AI, przewagę konkurencyjną daje gotowość ludzi do współpracy z technologią.
+            </p>
+          </div>
+          <div data-reveal-line data-reveal-delay="300" style="margin: var(--space-xl) 0; color: var(--ink);"></div>
+          <p class="manifesto__sub" data-reveal data-reveal-delay="400">
+            Dobrostan to nie cel — to fundament, na którym budujemy gotowość ludzi do transformacji.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SERVICES ════════ -->
+  <section class="services" id="uslugi">
+    <div class="container container--wide">
+      <div class="services__header">
+        <span class="label" data-reveal="left">Co robimy</span>
+        <h2 class="services__title" data-reveal-words data-reveal-delay="100">Dwa obszary. Jeden cel.</h2>
+      </div>
+
+      <!-- LAB -->
+      <div class="services__item" data-hover-lift>
+        <div class="services__item-meta" data-reveal="left">
+          <span class="services__number font-mono" data-reveal-counter="1" data-counter-suffix="" style="min-width:2ch;">0</span>
+          <span class="label" style="color: var(--sage-dark);">LAB</span>
+        </div>
+        <div class="services__item-content">
+          <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Szkolenia i warsztaty dla pracowników i liderów</h3></div>
+          <p class="services__item-desc" data-reveal data-reveal-delay="150">
+            Stawiamy człowieka w centrum organizacji. Nasze szkolenia podzieliliśmy na trzy kluczowe obszary — wellbeing, transformacja technologiczna i przywództwo.
+          </p>
+          <div class="services__tags" data-reveal-stagger>
+            <span class="tag tag--sage">Wellbeing</span>
+            <span class="tag tag--ember">Transformacja</span>
+            <span class="tag tag--mist">Liderzy</span>
+          </div>
+          <a href="/oferta" class="btn btn--ghost" data-reveal data-reveal-delay="300">Poznaj ofertę szkoleń</a>
+        </div>
+      </div>
+
+      <div class="services__divider" data-reveal-line style="color: var(--sand);"></div>
+
+      <!-- AI READINESS -->
+      <div class="services__item services__item--reverse" data-hover-lift>
+        <div class="services__item-meta" data-reveal="left">
+          <span class="services__number font-mono" data-reveal-counter="2" data-counter-suffix="" style="min-width:2ch;">0</span>
+          <span class="label" style="color: var(--ember);">AI Readiness</span>
+        </div>
+        <div class="services__item-content">
+          <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Diagnostyka transformacji AI</h3></div>
+          <p class="services__item-desc" data-reveal data-reveal-delay="150">
+            RADAR to kompleksowe narzędzie diagnostyczne, które bada gotowość organizacji do transformacji AI z perspektywy ludzi — pracowników, zespołów i kultury organizacyjnej.
+          </p>
+          <div class="services__tags" data-reveal-stagger>
+            <span class="tag tag--ember">RADAR</span>
+          </div>
+          <a href="/o-nas" class="btn btn--ghost" data-reveal data-reveal-delay="300">Dowiedz się więcej</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ STATEMENT (dark) ════════ -->
+  <section class="statement">
+    <div class="container container--wide">
+      <h2 class="statement__text" data-reveal-words>
+        Transformacja technologiczna zaczyna się od ludzi.
+      </h2>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <CTA variant="ember" />
+
+  <!-- ════════ MISJA + FOUNDERS ════════ -->
+  <section class="misja">
+    <div class="container container--wide">
+      <div class="misja__grid">
+        <div class="misja__left" data-reveal="left">
+          <span class="label">Misja</span>
+        </div>
+        <div class="misja__right">
+          <div class="reveal-clip">
+            <p class="misja__text font-display" data-reveal="clip-up">
+              Jesteśmy kompasem dla firm, które chcą bezpiecznie i świadomie przepłynąć przez fale współczesnych transformacji.
+            </p>
+          </div>
+          <div data-reveal-line data-reveal-delay="200" style="margin: var(--space-xl) 0; color: var(--ink);"></div>
+          <p class="misja__sub" data-reveal data-reveal-delay="300">
+            Wierzymy, że kluczem do sukcesu jest połączenie siły człowieka z mądrym wykorzystaniem sztucznej inteligencji. Kompleksowo troszczymy się o rozwój liderów i pracowników.
+          </p>
+        </div>
+      </div>
+
+      <div data-reveal-line style="color: var(--sand); margin-bottom: var(--space-3xl);"></div>
+
+      <div class="misja__founders" data-reveal-stagger>
+        {founders.map((member) => (
+          <div class="misja__person">
+            <img src={member.image} alt={member.name} class="misja__avatar" width="144" height="144" loading="lazy" />
+            <p class="misja__person-name">{member.name}</p>
+            <p class="misja__person-role text-muted">{member.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ PARTNERS ════════ -->
+  <section class="partners">
+    <div class="container container--wide">
+      <div class="partners__inner">
+        <span class="label" data-reveal="left">Partnerzy</span>
+        <div class="partners__logos" data-reveal-stagger>
+          <div class="partners__logo-placeholder"></div>
+          <div class="partners__logo-placeholder"></div>
+          <div class="partners__logo-placeholder"></div>
+          <div class="partners__logo-placeholder"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ NEWSLETTER ════════ -->
+  <Newsletter variant="sand" />
+</BaseLayout>
+
+<style>
+  /* ─── Hero ─── */
+  .hero {
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-5xl);
+    background-color: var(--cream);
+    position: relative;
+  }
+
+  .hero__label {
+    display: block;
+    margin-bottom: var(--space-xl);
+    color: var(--grey);
+  }
+
+  .hero__title {
+    font-family: var(--font-display-light);
+    font-size: var(--text-6xl);
+    font-weight: 400;
+    letter-spacing: -0.035em;
+    line-height: 1.0;
+    color: var(--ink);
+    max-width: 14ch;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .hero__lead {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--grey);
+    max-width: 42ch;
+  }
+
+  .hero__scroll-hint {
+    margin-top: var(--space-4xl);
+    color: var(--grey);
+    opacity: 0.5;
+  }
+
+  /* ─── Manifesto ─── */
+  .manifesto {
+    padding-block: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .manifesto__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .manifesto__left {
+    padding-top: var(--space-xs);
+  }
+
+  .manifesto__statement {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    line-height: 1.35;
+    max-width: none;
+    margin-top: 0;
+  }
+
+  .manifesto__sub {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 50ch;
+  }
+
+  /* ─── Services ─── */
+  .services {
+    padding-block: var(--space-5xl);
+    background-color: var(--cream);
+  }
+
+  .services__header {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .services__title {
+    font-size: var(--text-4xl);
+    margin-top: var(--space-md);
+    line-height: 1.15;
+  }
+
+  .services__item {
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+    gap: var(--space-3xl);
+    padding-block: var(--space-3xl);
+    align-items: start;
+    border-radius: var(--radius-lg, 12px);
+    padding-inline: var(--space-xl);
+    margin-inline: calc(-1 * var(--space-xl));
+  }
+
+  .services__item--reverse {
+    grid-template-columns: 3fr 7fr;
+  }
+
+  .services__item-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .services__number {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    color: var(--sand);
+    line-height: 1;
+  }
+
+  .services__item-title {
+    font-size: var(--text-3xl);
+    line-height: 1.2;
+    margin-bottom: var(--space-lg);
+  }
+
+  .services__item-desc {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 55ch;
+    margin-bottom: var(--space-xl);
+  }
+
+  .services__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-xl);
+  }
+
+  .services__divider {
+    height: 1px;
+    background: currentColor;
+  }
+
+  /* ─── Statement (dark) ─── */
+  .statement {
+    padding-block: var(--space-5xl);
+    background-color: var(--deep);
+  }
+
+  .statement__text {
+    font-family: var(--font-display-light);
+    font-size: var(--text-5xl);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--white);
+    max-width: 18ch;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  /* ─── Misja ─── */
+  .misja {
+    padding-block: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .misja__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-3xl);
+    align-items: start;
+    margin-bottom: var(--space-4xl);
+  }
+
+  .misja__left {
+    padding-top: var(--space-xs);
+  }
+
+  .misja__text {
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    line-height: 1.35;
+    max-width: none;
+  }
+
+  .misja__sub {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 50ch;
+  }
+
+  .misja__founders {
+    display: flex;
+    gap: var(--space-3xl);
+  }
+
+  .misja__person {
+    text-align: left;
+  }
+
+  .misja__avatar {
+    width: 144px;
+    height: 144px;
+    border-radius: var(--radius-full);
+    background: var(--sand-light);
+    margin-bottom: var(--space-md);
+    object-fit: cover;
+  }
+
+  .misja__person-name {
+    font-weight: 400;
+    font-size: var(--text-base);
+    margin-bottom: var(--space-xs);
+  }
+
+  .misja__person-role {
+    font-size: var(--text-sm);
+  }
+
+  /* ─── Partners ─── */
+  .partners {
+    padding-block: var(--space-4xl);
+    background-color: var(--cream);
+  }
+
+  .partners__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3xl);
+  }
+
+  .partners__logos {
+    display: flex;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .partners__logo-placeholder {
+    width: 140px;
+    height: 50px;
+    background: var(--sand);
+    border-radius: var(--radius-sm);
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+  }
+
+  .partners__logo-placeholder:hover {
+    opacity: 0.6;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .hero__title {
+      font-size: var(--text-5xl);
+    }
+
+    .manifesto__grid,
+    .misja__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .services__item,
+    .services__item--reverse {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      padding-inline: 0;
+      margin-inline: 0;
+    }
+
+    .misja__founders {
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    .partners__inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

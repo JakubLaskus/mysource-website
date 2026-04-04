@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384.8 384.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="Warstwa_1-2" data-name="Warstwa_1">
+    <g>
+      <line class="cls-1" x1="192.7" y1="384.6" x2="192.7" y2=".6" vector-effect="non-scaling-stroke"/>
+      <g>
+        <circle class="cls-1" cx="192.7" cy="193.2" r="51.3" vector-effect="non-scaling-stroke"/>
+        <line class="cls-1" x1="96.7" y1="384.6" x2="96.7" y2="192" vector-effect="non-scaling-stroke"/>
+        <line class="cls-1" x1="288.7" y1="384.6" x2="288.7" y2="193.2" vector-effect="non-scaling-stroke"/>
+        <circle class="cls-1" cx="192.7" cy="192" r="96" vector-effect="non-scaling-stroke"/>
+        <circle class="cls-1" cx="192.7" cy="192" r="142.5" vector-effect="non-scaling-stroke"/>
+        <circle class="cls-1" cx="192.7" cy="192" r="191.5" vector-effect="non-scaling-stroke"/>
+      </g>
+      <line class="cls-1" x1=".5" y1="384.6" x2=".5" y2=".6" vector-effect="non-scaling-stroke"/>
+      <line class="cls-1" x1="384.3" y1="384.6" x2="384.3" y2=".6" vector-effect="non-scaling-stroke"/>
+    </g>
+  </g>
+</svg>

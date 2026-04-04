@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_2" data-name="Warstwa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 198.43 198.43">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #c7d5c1;
+      }
+
+      .cls-2 {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #fff;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="-244.85" y="50.37" width="137.2" height="130.36"/>
+    </clipPath>
+  </defs>
+  <g id="Group_41719" data-name="Group 41719">
+    <path id="Path_46226" data-name="Path 46226" class="cls-3" d="M128.03,32.13c-14.14,0-25.61,11.46-25.61,25.61h0c0-14.14-11.46-25.61-25.61-25.61s-25.61,11.46-25.61,25.61c0-14.14-11.46-25.61-25.61-25.61S0,43.59,0,57.73v29.26c0,14.14,11.46,25.61,25.61,25.61s25.61-11.46,25.61-25.61c0,14.14,11.46,25.61,25.61,25.61s25.61-11.46,25.61-25.61c0,14.14,11.46,25.61,25.61,25.61s25.61-11.46,25.61-25.61v-29.26c0-14.14-11.46-25.61-25.61-25.61,0,0,0,0,0,0"/>
+    <g id="Group_41699" data-name="Group 41699">
+      <g id="Group_1534" data-name="Group 1534">
+        <line id="Line_519" data-name="Line 519" class="cls-2" x1="88.48" y1="56.08" x2="88.48" y2="72.57"/>
+        <line id="Line_520" data-name="Line 520" class="cls-2" x1="114.45" y1="56.08" x2="114.45" y2="72.57"/>
+        <path id="Path_553" data-name="Path 553" class="cls-4" d="M134.44,94.55c-.01,18.21-14.79,32.96-33,32.95-18.19-.01-32.94-14.76-32.95-32.95v-16.48c0-3.04,2.46-5.5,5.5-5.5h54.96c3.04,0,5.5,2.46,5.5,5.5v16.48Z"/>
+      </g>
+      <path id="Path_46214" data-name="Path 46214" class="cls-2" d="M101.47,127.53v4.2c0,6.96-5.64,12.6-12.6,12.6h-56.71c-8.12,0-14.7,6.58-14.7,14.7s6.58,14.7,14.7,14.7h27.3c3.48,0,6.3,2.82,6.3,6.3h0v18.4"/>
+    </g>
+  </g>
+  <g id="Group_41714" data-name="Group 41714">
+    <g class="cls-5">
+      <g id="Mask_Group_10" data-name="Mask Group 10">
+        <g id="Group_41628" data-name="Group 41628">
+          <g id="Group_41627" data-name="Group 41627">
+            <rect id="Rectangle_3390" data-name="Rectangle 3390" class="cls-1" x="-180.03" y="-79.24" width="489" height="402.46" transform="translate(-25.79 17.63) rotate(-13)"/>
+          </g>
+          <rect id="Rectangle_3391" data-name="Rectangle 3391" class="cls-1" x="-220.93" y="-189.33" width="489" height="402.46" transform="translate(-1.79 19.27) rotate(-43)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

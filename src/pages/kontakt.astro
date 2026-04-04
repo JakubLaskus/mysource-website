@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schemas = [
+  {
+    type: 'breadcrumb' as const,
+    data: {
+      items: [
+        { name: 'Strona główna', url: 'https://www.mysource.pl/' },
+        { name: 'Kontakt', url: 'https://www.mysource.pl/kontakt' },
+      ],
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Kontakt - Umów spotkanie lub wypełnij formularz"
+  description="Skontaktuj się z Mysource. Bezpłatna konsultacja strategiczna (30 min). Umów spotkanie lub wypełnij formularz kontaktowy."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="kontakt-hero">
+    <div class="container container--wide">
+      <span class="label" style="color: var(--ember);" data-reveal="none">Kontakt</span>
+      <h1 class="kontakt-hero__title" data-reveal-words data-reveal-delay="100">
+        Porozmawiajmy<br />o przyszłości Twojej<br />organizacji
+      </h1>
+      <p class="kontakt-hero__desc" data-reveal data-reveal-delay="250">
+        Bezpłatna konsultacja strategiczna — 30 minut, które mogą zmienić perspektywę Twojej organizacji.
+      </p>
+    </div>
+  </section>
+
+  <!-- ════════ FORM + CALENDLY ════════ -->
+  <section class="kontakt-main">
+    <div class="container container--wide">
+      <div class="kontakt-main__grid">
+        <!-- Calendly -->
+        <div class="kontakt-calendly" id="spotkanie" data-reveal="left">
+          <div class="kontakt-calendly__header">
+            <span class="label">Umów spotkanie</span>
+            <p class="kontakt-calendly__desc">
+              Wybierz dogodny termin na bezpłatną konsultację strategiczną. Porozmawiamy o wyzwaniach Twojej organizacji i zaproponujemy kierunek działania.
+            </p>
+          </div>
+          <div class="kontakt-calendly__placeholder">
+            <p class="text-muted">Kalendarz Calendly zostanie załadowany tutaj</p>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="kontakt-form-wrapper" id="formularz" data-reveal="right">
+          <span class="label">Wypełnij formularz</span>
+          <p class="kontakt-form__desc">
+            Opisz swoje potrzeby, a my odezwiemy się w ciągu 24 godzin.
+          </p>
+          <form class="kontakt-form" action="/api/contact" method="POST">
+            <div class="kontakt-form__row">
+              <input type="text" name="name" class="input" placeholder="Imię i nazwisko" required aria-label="Imię i nazwisko" />
+              <input type="email" name="email" class="input" placeholder="Adres e-mail" required aria-label="Adres e-mail" />
+            </div>
+            <div class="kontakt-form__row">
+              <input type="tel" name="phone" class="input" placeholder="Telefon" aria-label="Telefon" />
+              <input type="text" name="company" class="input" placeholder="Firma" aria-label="Firma" />
+            </div>
+            <input type="text" name="role" class="input" placeholder="Stanowisko" aria-label="Stanowisko" />
+            <textarea name="message" class="input" placeholder="W czym możemy pomóc?" rows="5" required aria-label="Wiadomość"></textarea>
+            <label class="kontakt-form__consent">
+              <input type="checkbox" name="gdpr" required />
+              <span>
+                Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z
+                <a href="/polityka-prywatnosci">polityką prywatności</a>.
+              </span>
+            </label>
+            <button type="submit" class="btn btn--primary">Wyślij wiadomość</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* ─── Hero ─── */
+  .kontakt-hero {
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-4xl);
+    background-color: var(--cream);
+  }
+
+  .kontakt-hero__title {
+    font-size: var(--text-5xl);
+    font-family: var(--font-display-light);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 16ch;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+  }
+
+  .kontakt-hero__desc {
+    font-size: var(--text-xl);
+    color: var(--grey);
+    max-width: 45ch;
+    line-height: 1.6;
+  }
+
+  /* ─── Main ─── */
+  .kontakt-main {
+    padding-block: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .kontakt-main__grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-4xl);
+    align-items: start;
+  }
+
+  .kontakt-calendly__desc {
+    font-size: var(--text-base);
+    color: var(--grey);
+    line-height: 1.8;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+    max-width: none;
+  }
+
+  .kontakt-calendly__placeholder {
+    padding: var(--space-4xl);
+    background: var(--grey-light);
+    border-radius: var(--radius-md);
+    text-align: center;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ─── Form ─── */
+  .kontakt-form__desc {
+    font-size: var(--text-base);
+    color: var(--grey);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
+  }
+
+  .kontakt-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .kontakt-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .kontakt-form__consent {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: var(--text-xs);
+    color: var(--grey);
+    cursor: pointer;
+    align-items: flex-start;
+  }
+
+  .kontakt-form__consent input {
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  .kontakt-form__consent a {
+    text-decoration: underline;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .kontakt-main__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .kontakt-form__row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

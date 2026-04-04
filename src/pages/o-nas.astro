@@ -1,0 +1,481 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { radarExperts } from '../data/team';
+
+const radarLayers = [
+  {
+    id: 'W1',
+    title: 'Impact',
+    subtitle: 'Wpływ AI na ludzi',
+    items: ['Emocje, technostres', 'Shadow AI, deskilling', 'Overreliance, silent impacts', 'Wellbeing, obciążenie poznawcze', 'Work-life balance'],
+  },
+  {
+    id: 'W2',
+    title: 'Mindset',
+    subtitle: 'Sposób myślenia o AI',
+    items: ['AI literacy, krytyczne myślenie', 'Zaufanie, kultura', 'Kompetencje przyszłości'],
+  },
+  {
+    id: 'W3',
+    title: 'Futures',
+    subtitle: 'Wyobraźnia organizacyjna',
+    items: ['Future literacy, scenariusze', 'Antytrendy, sprawczość', 'Ryzyka społeczne'],
+  },
+  {
+    id: 'W4',
+    title: 'Transformation',
+    subtitle: 'Gotowość do zmiany',
+    items: ['Bezpieczeństwo psychologiczne', 'Przywództwo, komunikacja', 'Accountability'],
+  },
+];
+
+const stats = [
+  { number: '70%', label: 'niepowodzeń wdrożeń AI', detail: 'wynika z czynników ludzkich', source: 'BCG 2024' },
+  { number: '55%', label: 'polskich pracowników', detail: 'ukrywa korzystanie z AI', source: 'Deloitte 2024' },
+  { number: '63%', label: 'wyzwań wdrożeniowych', detail: 'ma charakter ludzki', source: 'Prosci 2025' },
+];
+
+const schemas = [
+  {
+    type: 'breadcrumb' as const,
+    data: {
+      items: [
+        { name: 'Strona główna', url: 'https://www.mysource.pl/' },
+        { name: 'AI Readiness', url: 'https://www.mysource.pl/o-nas' },
+      ],
+    },
+  },
+  {
+    type: 'faq' as const,
+    data: {
+      questions: [
+        { question: 'Czym jest RADAR od Mysource?', answer: 'RADAR (Readiness Assessment & Development Action Roadmap) to kompleksowe narzędzie diagnostyczne badające gotowość organizacji do transformacji AI z perspektywy ludzi — pracowników, zespołów i kultury organizacyjnej.' },
+        { question: 'Jak działa diagnostyka RADAR?', answer: 'RADAR to proces badawczo-diagnostyczny oparty o ankiety, wywiady i warsztaty. Podzielony na 4 warstwy: Impact, Mindset, Futures i Transformation. Wynikiem jest obszerny raport oraz indeks ryzyk ludzkich HAIRI.' },
+        { question: 'Dlaczego ludzki wymiar AI jest ważny?', answer: '70% niepowodzeń wdrożeń AI wynika z czynników ludzkich (BCG 2024). Istniejące narzędzia badają technologię i infrastrukturę — żadne nie mierzy kompleksowo ludzkiego wymiaru adopcji GenAI.' },
+      ],
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="AI Readiness — RADAR diagnostyka transformacji AI | Mysource"
+  description="RADAR: Readiness Assessment & Development Action Roadmap. Kompleksowe narzędzie diagnostyczne badające gotowość organizacji na transformację AI z perspektywy ludzi."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="onas-hero">
+    <div class="container container--wide">
+      <span class="label" style="color: var(--ember);" data-reveal="none">AI Readiness</span>
+      <h1 class="onas-hero__title" data-reveal-words data-reveal-delay="100">
+        Dbamy o ludzki wymiar<br />transformacji technologicznej
+      </h1>
+      <div class="onas-hero__grid">
+        <p class="onas-hero__lead" data-reveal data-reveal-delay="250">
+          Stworzyliśmy autorskie narzędzie diagnostyczne AI RADAR: Readiness Assessment & Development Action Roadmap.
+        </p>
+        <p class="onas-hero__sub">
+          Wprowadzamy nowy standard diagnostyki transformacji AI dla polskich organizacji.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ RADAR INTRO ════════ -->
+  <section class="radar" id="radar">
+    <div class="container container--wide">
+      <div class="radar__grid">
+        <div class="radar__left" data-reveal="left">
+          <span class="tag tag--ember">RADAR</span>
+          <h2 class="radar__title">Technologia to nie wszystko</h2>
+        </div>
+        <div class="radar__right" data-reveal>
+          <p class="radar__text">
+            Bada gotowość organizacji do transformacji AI z perspektywy ludzi — pracowników, zespołów i kultury organizacyjnej. Nasze podejście opiera się na modelu współewolucji człowiek-AI — traktujemy AI nie jako oprogramowanie do wdrożenia, ale jako nowego członka ekosystemu organizacji.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ STATS ════════ -->
+  <section class="stats-section">
+    <div class="container container--wide">
+      <div class="stats__grid" data-reveal-stagger>
+        {stats.map((stat) => (
+          <div class="stats__card" data-hover-lift>
+            <span class="stats__number" data-reveal-counter={stat.number.replace('%', '')} data-counter-suffix="%">0</span>
+            <p class="stats__label">{stat.label}</p>
+            <p class="stats__detail">{stat.detail}</p>
+            <span class="stats__source font-mono">{stat.source}</span>
+          </div>
+        ))}
+      </div>
+      <div class="stats__bottom" data-reveal>
+        <p class="stats__mission">
+          Tworzymy Radar po to, żeby w rewolucji GenAI nie zgubić człowieka — jego emocji, motywacji, lęków, nadziei i poczucia sprawczości.
+        </p>
+        <p class="stats__highlight font-display">
+          Badamy to, czego nikt inny nie mierzy: emocje, kulturę i ludzki wymiar adopcji AI.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ ZESPÓŁ ════════ -->
+  <section class="team" id="zespol">
+    <div class="container container--wide">
+      <div class="team__header" data-reveal>
+        <span class="label">Zespół ekspercki</span>
+        <p class="team__intro">
+          Za skutecznością narzędzia RADAR stoi interdyscyplinarny zespół ekspertów, który w ramach jednego spójnego procesu poddaje dane cross-perspektywicznej ocenie.
+        </p>
+      </div>
+      <div class="team__grid" data-reveal-stagger>
+        {radarExperts.map((expert) => (
+          <div class="team__member">
+            <img src={expert.image} alt={expert.name} class="team__avatar" width="140" height="140" loading="lazy" />
+            <p class="team__name">{expert.name}</p>
+            <p class="team__role text-muted">{expert.role}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ WARSTWY ════════ -->
+  <section class="layers" id="proces">
+    <div class="container container--wide">
+      <div class="layers__header" data-reveal>
+        <span class="label">Jak to działa?</span>
+        <h2 class="layers__title">Cztery warstwy — jedna diagnoza</h2>
+      </div>
+      <p class="layers__intro">
+        Radar to proces badawczo-diagnostyczny oparty o ankiety, wywiady i warsztaty. Podzielony jest na 4 warstwy nietechnologicznego wpływu GenAI na organizację.
+      </p>
+      <div class="layers__grid" data-reveal-stagger>
+        {radarLayers.map((layer) => (
+          <div class="layers__card" data-hover-lift>
+            <span class="layers__card-id font-mono">{layer.id}</span>
+            <h3 class="layers__card-title">{layer.title}</h3>
+            <p class="layers__card-subtitle font-display">{layer.subtitle}</p>
+            <ul class="layers__card-items">
+              {layer.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ REPORT CTA ════════ -->
+  <section class="report-cta">
+    <div class="container container--wide">
+      <div class="report-cta__inner" data-reveal="left">
+        <p class="report-cta__label label" style="color: var(--ember);">Raport</p>
+        <p class="report-cta__text font-display">Insights 2026 — The Human Edge — dobrostan jako katalizator transformacji AI</p>
+        <a href="#" class="btn btn--primary">
+          Pobierz raport
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <CTA variant="dark" />
+
+  <!-- ════════ NEWSLETTER ════════ -->
+  <Newsletter variant="deep" />
+</BaseLayout>
+
+<style>
+  /* ─── Hero ─── */
+  .onas-hero {
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-4xl);
+    background-color: var(--white);
+  }
+
+  .onas-hero__title {
+    font-size: var(--text-5xl);
+    font-family: var(--font-display-light);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 18ch;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .onas-hero__grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-3xl);
+  }
+
+  .onas-hero__lead {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    max-width: none;
+  }
+
+  .onas-hero__sub {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: none;
+  }
+
+  /* ─── RADAR ─── */
+  .radar {
+    padding-block: var(--space-5xl);
+    background-color: var(--sage-light);
+  }
+
+  .radar__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .radar__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-lg);
+    line-height: 1.2;
+  }
+
+  .radar__text {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: none;
+  }
+
+  /* ─── Stats ─── */
+  .stats-section {
+    padding-block: var(--space-5xl);
+    background-color: var(--deep);
+    color: var(--white);
+  }
+
+  .stats__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3xl);
+    margin-bottom: var(--space-4xl);
+    padding-bottom: var(--space-4xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .stats__card {
+    text-align: left;
+  }
+
+  .stats__number {
+    font-family: var(--font-display);
+    font-size: var(--text-5xl);
+    font-weight: 400;
+    color: var(--ember);
+    display: block;
+    line-height: 1;
+    margin-bottom: var(--space-md);
+  }
+
+  .stats__label {
+    font-size: var(--text-base);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .stats__detail {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-sm);
+  }
+
+  .stats__source {
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .stats__bottom {
+    max-width: 600px;
+  }
+
+  .stats__mission {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    margin-bottom: var(--space-xl);
+    max-width: none;
+  }
+
+  .stats__highlight {
+    font-size: var(--text-2xl);
+    color: var(--white);
+    font-weight: 400;
+    max-width: none;
+    line-height: 1.4;
+  }
+
+  /* ─── Team ─── */
+  .team {
+    padding-block: var(--space-5xl);
+    background-color: var(--cream);
+  }
+
+  .team__header {
+    margin-bottom: var(--space-3xl);
+  }
+
+  .team__intro {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 55ch;
+    margin-top: var(--space-md);
+  }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .team__member {
+    text-align: left;
+  }
+
+  .team__avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: var(--radius-full);
+    background: var(--white);
+    margin-bottom: var(--space-md);
+    object-fit: cover;
+  }
+
+  .team__name {
+    font-size: var(--text-base);
+    font-weight: 400;
+    margin-bottom: var(--space-xs);
+  }
+
+  .team__role {
+    font-size: var(--text-sm);
+    max-width: 25ch;
+  }
+
+  /* ─── Layers ─── */
+  .layers {
+    padding-block: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .layers__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .layers__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-md);
+    line-height: 1.2;
+  }
+
+  .layers__intro {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: 60ch;
+    margin-bottom: var(--space-4xl);
+  }
+
+  .layers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .layers__card {
+    padding: var(--space-xl);
+    background: var(--cream);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .layers__card-id {
+    font-size: var(--text-xs);
+    color: var(--ember);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-weight: 700;
+  }
+
+  .layers__card-title {
+    font-size: var(--text-xl);
+  }
+
+  .layers__card-subtitle {
+    font-size: var(--text-sm);
+    color: var(--grey);
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .layers__card-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: var(--grey);
+    margin-top: var(--space-sm);
+  }
+
+  .layers__card-items li::before {
+    content: '· ';
+    color: var(--ember);
+  }
+
+  /* ─── Report CTA ─── */
+  .report-cta {
+    padding-block: var(--space-4xl);
+    background-color: var(--ember-light);
+  }
+
+  .report-cta__inner {
+    max-width: 600px;
+  }
+
+  .report-cta__text {
+    font-size: var(--text-2xl);
+    font-weight: 400;
+    line-height: 1.4;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-xl);
+    max-width: none;
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .onas-hero__grid,
+    .radar__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .stats__grid,
+    .team__grid,
+    .layers__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

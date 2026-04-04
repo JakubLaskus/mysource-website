@@ -1,0 +1,529 @@
+---
+/**
+ * ScrollReveal — rich scroll-triggered animations.
+ *
+ * Auto-animated:
+ *   Every <section> inside <main> fades up on scroll.
+ *
+ * Manual opt-in (data-reveal):
+ *   data-reveal           — fade up (default)
+ *   data-reveal="left"    — slide from left
+ *   data-reveal="right"   — slide from right
+ *   data-reveal="scale"   — scale up
+ *   data-reveal="none"    — fade only
+ *   data-reveal="clip-up" — clip-path reveal from bottom
+ *   data-reveal="clip-left" — clip-path reveal from left
+ *   data-reveal="rotate"  — slight rotation + fade
+ *   data-reveal="zoom"    — zoom from 1.15 down to 1
+ *
+ * Special animations:
+ *   data-reveal-line      — horizontal line grows from 0 to 100%
+ *   data-reveal-words     — each word fades in separately
+ *   data-reveal-chars     — each character fades in
+ *   data-reveal-counter="70" — counts from 0 to value
+ *   data-reveal-parallax  — subtle parallax on scroll
+ *
+ * Stagger children:
+ *   data-reveal-stagger   — children animate with increasing delay
+ *
+ * Delay:
+ *   data-reveal-delay="200" — 200ms extra delay
+ */
+---
+
+<style is:global>
+  /* ─── Section auto-reveal ─── */
+  main > section,
+  main > :is(astro-island, astro-slot) > section {
+    opacity: 0;
+    transform: translateY(80px);
+    transition:
+      opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  main > section.--revealed,
+  main > :is(astro-island, astro-slot) > section.--revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* First section (hero) — no initial offset, just fade */
+  main > section:first-child {
+    transform: none;
+    opacity: 0;
+    transition: opacity 0.8s ease-out;
+  }
+
+  main > section:first-child.--revealed {
+    opacity: 1;
+  }
+
+  /* ─── Reveal base (manual opt-in) ─── */
+  [data-reveal] {
+    opacity: 0;
+    transition:
+      opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  /* Direction variants — initial state */
+  [data-reveal=""],
+  [data-reveal="up"] {
+    transform: translateY(60px);
+  }
+
+  [data-reveal="left"] {
+    transform: translateX(-60px);
+  }
+
+  [data-reveal="right"] {
+    transform: translateX(60px);
+  }
+
+  [data-reveal="scale"] {
+    transform: scale(0.88);
+  }
+
+  [data-reveal="none"] {
+    transform: none;
+  }
+
+  /* Clip-up: slides up from below using transform + overflow hidden wrapper */
+  [data-reveal="clip-up"] {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  [data-reveal="clip-left"] {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  [data-reveal="clip-right"] {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  /* Wrapper for clip reveals — add class .reveal-clip to parent */
+  .reveal-clip {
+    overflow: hidden;
+  }
+
+  /* Rotate reveal */
+  [data-reveal="rotate"] {
+    transform: translateY(40px) rotate(3deg);
+    transform-origin: left bottom;
+  }
+
+  /* Zoom reveal (image zoom) */
+  [data-reveal="zoom"] {
+    transform: scale(1.15);
+    overflow: hidden;
+  }
+
+  /* Active state — triggered by IntersectionObserver */
+  [data-reveal].--revealed {
+    opacity: 1;
+    transform: translate(0) scale(1) rotate(0);
+  }
+
+  /* ─── Line reveal ─── */
+  [data-reveal-line] {
+    height: 1px;
+    background: currentColor;
+    transform-origin: left center;
+    transform: scaleX(0);
+    transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0.15;
+  }
+
+  [data-reveal-line].--revealed {
+    transform: scaleX(1);
+  }
+
+  /* ─── Word-by-word reveal ─── */
+  [data-reveal-words] .reveal-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-reveal-words].--revealed .reveal-word {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Character reveal ─── */
+  [data-reveal-chars] .reveal-char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(100%);
+    transition:
+      opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-reveal-chars].--revealed .reveal-char {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── Counter ─── */
+  [data-reveal-counter] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ─── Stagger children ─── */
+  [data-reveal-stagger] > * {
+    opacity: 0;
+    transform: translateY(40px);
+    transition:
+      opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+  [data-reveal-stagger].--revealed > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stagger delays */
+  [data-reveal-stagger].--revealed > *:nth-child(1)  { transition-delay: 0ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(2)  { transition-delay: 100ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(3)  { transition-delay: 200ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(4)  { transition-delay: 300ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(5)  { transition-delay: 400ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(6)  { transition-delay: 500ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(7)  { transition-delay: 600ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(8)  { transition-delay: 700ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(9)  { transition-delay: 800ms; }
+  [data-reveal-stagger].--revealed > *:nth-child(10) { transition-delay: 900ms; }
+
+  /* ─── Hover micro-interactions ─── */
+  .btn {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.3s ease;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  /* Card hover lift */
+  [data-hover-lift] {
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s ease;
+  }
+
+  [data-hover-lift]:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Image hover zoom */
+  [data-hover-zoom] {
+    overflow: hidden;
+  }
+
+  [data-hover-zoom] img {
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-hover-zoom]:hover img {
+    transform: scale(1.06);
+  }
+
+  /* Tag hover */
+  .tag {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .tag:hover {
+    transform: translateY(-2px);
+    opacity: 0.85;
+  }
+
+  /* Avatar hover */
+  .misja__avatar,
+  .team__avatar,
+  .path-card__avatar {
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.5s ease;
+  }
+
+  .misja__avatar:hover,
+  .team__avatar:hover,
+  .path-card__avatar:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Link underline animation */
+  [data-hover-underline] {
+    position: relative;
+    text-decoration: none;
+  }
+
+  [data-hover-underline]::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right center;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  [data-hover-underline]:hover::after {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  /* ─── Parallax elements ─── */
+  [data-reveal-parallax] {
+    transition: transform 0.1s linear;
+    will-change: transform;
+  }
+
+  /* ─── Smooth scroll indicator pulse ─── */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .scroll-indicator {
+    animation: float 2.5s ease-in-out infinite;
+  }
+
+  /* ─── Subtle background gradient shift on sections ─── */
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* ─── Respect reduced motion ─── */
+  @media (prefers-reduced-motion: reduce) {
+    main > section,
+    [data-reveal],
+    [data-reveal-stagger] > *,
+    [data-reveal-line],
+    [data-reveal-words] .reveal-word,
+    [data-reveal-chars] .reveal-char {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+
+    .btn:hover,
+    [data-hover-lift]:hover,
+    .tag:hover,
+    .misja__avatar:hover,
+    .team__avatar:hover {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  function initScrollReveal() {
+    // Auto-animate all sections inside main
+    const sections = document.querySelectorAll('main > section');
+    // Manual opt-in elements
+    const revealElements = document.querySelectorAll('[data-reveal], [data-reveal-stagger], [data-reveal-line]');
+    // Word reveals — split text into spans
+    const wordRevealElements = document.querySelectorAll('[data-reveal-words]');
+    // Character reveals
+    const charRevealElements = document.querySelectorAll('[data-reveal-chars]');
+    // Counter elements
+    const counterElements = document.querySelectorAll('[data-reveal-counter]');
+    // Parallax elements
+    const parallaxElements = document.querySelectorAll('[data-reveal-parallax]');
+
+    // Respect reduced motion
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ─── Word splitting ───
+    wordRevealElements.forEach((el) => {
+      if (el.querySelector('.reveal-word')) return; // already split
+      const text = el.textContent || '';
+      const words = text.trim().split(/\s+/);
+      el.innerHTML = words
+        .map((word, i) => `<span class="reveal-word" style="transition-delay:${i * 60}ms">${word}</span>`)
+        .join(' ');
+    });
+
+    // ─── Character splitting ───
+    charRevealElements.forEach((el) => {
+      if (el.querySelector('.reveal-char')) return;
+      const text = el.textContent || '';
+      el.innerHTML = text
+        .split('')
+        .map((char, i) => {
+          if (char === ' ') return ' ';
+          return `<span class="reveal-char" style="transition-delay:${i * 30}ms">${char}</span>`;
+        })
+        .join('');
+    });
+
+    if (reducedMotion) {
+      sections.forEach((el) => el.classList.add('--revealed'));
+      revealElements.forEach((el) => el.classList.add('--revealed'));
+      wordRevealElements.forEach((el) => el.classList.add('--revealed'));
+      charRevealElements.forEach((el) => el.classList.add('--revealed'));
+      counterElements.forEach((el) => {
+        const target = parseInt((el as HTMLElement).dataset.revealCounter || '0', 10);
+        el.textContent = target.toString();
+      });
+      return;
+    }
+
+    // ─── Section observer ───
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('--revealed');
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -80px 0px' }
+    );
+
+    // ─── Element observer ───
+    const elementObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = parseInt(el.dataset.revealDelay || '0', 10);
+
+            if (delay > 0) {
+              setTimeout(() => el.classList.add('--revealed'), delay);
+            } else {
+              el.classList.add('--revealed');
+            }
+
+            elementObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    // ─── Counter observer ───
+    const counterObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const target = parseInt(el.dataset.revealCounter || '0', 10);
+            const suffix = el.dataset.counterSuffix || '';
+            const duration = 2000;
+            const startTime = performance.now();
+
+            function animate(currentTime: number) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              // Ease out cubic
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(eased * target);
+              el.textContent = current + suffix;
+
+              if (progress < 1) {
+                requestAnimationFrame(animate);
+              }
+            }
+
+            requestAnimationFrame(animate);
+            counterObserver.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    // ─── Parallax scroll handler ───
+    if (parallaxElements.length > 0) {
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => {
+            parallaxElements.forEach((el) => {
+              const htmlEl = el as HTMLElement;
+              const speed = parseFloat(htmlEl.dataset.revealParallax || '0.15');
+              const rect = htmlEl.getBoundingClientRect();
+              const scrolled = window.innerHeight - rect.top;
+              if (scrolled > 0 && rect.top < window.innerHeight) {
+                const offset = scrolled * speed;
+                htmlEl.style.transform = `translateY(${-offset}px)`;
+              }
+            });
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+
+    // ─── Clip wrapper observer — observes .reveal-clip, reveals child ───
+    const clipWrappers = document.querySelectorAll('.reveal-clip');
+    const clipObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const child = entry.target.querySelector('[data-reveal]');
+            if (child) {
+              const delay = parseInt((child as HTMLElement).dataset.revealDelay || '0', 10);
+              if (delay > 0) {
+                setTimeout(() => child.classList.add('--revealed'), delay);
+              } else {
+                child.classList.add('--revealed');
+              }
+            }
+            clipObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -60px 0px' }
+    );
+
+    // Observe all
+    sections.forEach((el) => sectionObserver.observe(el));
+    revealElements.forEach((el) => {
+      // Skip elements inside .reveal-clip — those are handled by clipObserver
+      if (el.closest('.reveal-clip')) return;
+      elementObserver.observe(el);
+    });
+    wordRevealElements.forEach((el) => elementObserver.observe(el));
+    charRevealElements.forEach((el) => elementObserver.observe(el));
+    counterElements.forEach((el) => counterObserver.observe(el));
+    clipWrappers.forEach((el) => clipObserver.observe(el));
+  }
+
+  // Run on initial load
+  initScrollReveal();
+
+  // Re-run after Astro page transitions
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>

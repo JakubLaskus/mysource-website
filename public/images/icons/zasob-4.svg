@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 385 384.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+    </style>
+  </defs>
+  <g id="Warstwa_1-2" data-name="Warstwa_1">
+    <g>
+      <line class="cls-1" x1=".5" y1="384.6" x2=".5" y2=".6" vector-effect="non-scaling-stroke"/>
+      <g>
+        <g>
+          <line class="cls-1" x1="192.6" y1="384.6" x2="192.6" y2=".6" vector-effect="non-scaling-stroke"/>
+          <line class="cls-1" x1="96.6" y1="384.6" x2="96.6" y2="192.7" vector-effect="non-scaling-stroke"/>
+          <line class="cls-1" x1="288.6" y1="384.6" x2="288.6" y2="192.5" vector-effect="non-scaling-stroke"/>
+          <path class="cls-1" d="M192.6,192.7c53.1,0,96.1-43,96.1-96.1S245.6.5,192.6.5" vector-effect="non-scaling-stroke"/>
+          <path class="cls-1" d="M192.6,288.9c53,0,96-43,96-96.1s-43-96.1-96-96.1" vector-effect="non-scaling-stroke"/>
+          <path class="cls-1" d="M384.5,192.7c-53,0-95.9-43-95.9-96.1S331.5.5,384.5.5" vector-effect="non-scaling-stroke"/>
+          <path class="cls-1" d="M384.5,288.9c-52.9,0-95.8-43-95.8-96.1s42.9-96.1,95.8-96.1" vector-effect="non-scaling-stroke"/>
+          <line class="cls-1" x1=".6" y1="192.7" x2="192.6" y2="192.7" vector-effect="non-scaling-stroke"/>
+          <line class="cls-1" x1=".5" y1="96.6" x2="192.6" y2="96.6" vector-effect="non-scaling-stroke"/>
+          <line class="cls-1" x1="2.4" y1="288.9" x2="192.6" y2="288.9" vector-effect="non-scaling-stroke"/>
+        </g>
+        <line class="cls-1" x1="384.5" y1="384.6" x2="384.5" y2=".6" vector-effect="non-scaling-stroke"/>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,219 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const schemas = [
+  {
+    type: 'breadcrumb' as const,
+    data: {
+      items: [
+        { name: 'Strona główna', url: 'https://www.mysource.pl/' },
+        { name: 'Insights', url: 'https://www.mysource.pl/blog' },
+        { name: post.data.title, url: `https://www.mysource.pl/blog/${post.id}` },
+      ],
+    },
+  },
+  {
+    type: 'article' as const,
+    data: {
+      headline: post.data.title,
+      description: post.data.excerpt,
+      datePublished: post.data.date,
+      author: {
+        '@type': 'Person',
+        name: post.data.author || 'Mysource',
+      },
+      image: post.data.coverImage
+        ? `https://www.mysource.pl${post.data.coverImage}`
+        : undefined,
+      url: `https://www.mysource.pl/blog/${post.id}`,
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.excerpt}
+  ogImage={post.data.coverImage}
+  ogType="article"
+  schemas={schemas}
+>
+  <article class="section blog-post">
+    <div class="container blog-post__inner">
+      <header class="blog-post__header">
+        <a href="/blog" class="blog-post__back font-mono text-muted">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>
+          Wróć do insights
+        </a>
+
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="blog-post__tags">
+            {post.data.tags.map((tag: string) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+
+        <h1>{post.data.title}</h1>
+
+        <div class="blog-post__meta text-muted">
+          {post.data.author && <span>{post.data.author}</span>}
+          <time datetime={post.data.date}>
+            {new Date(post.data.date).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+        </div>
+      </header>
+
+      {post.data.coverImage && (
+        <img
+          src={post.data.coverImage}
+          alt={post.data.title}
+          class="blog-post__cover"
+          width="800"
+          height="450"
+        />
+      )}
+
+      <div class="blog-post__content prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .blog-post {
+    padding-block: var(--space-3xl);
+  }
+
+  .blog-post__inner {
+    max-width: 720px;
+  }
+
+  .blog-post__back {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .blog-post__back:hover {
+    color: var(--black);
+  }
+
+  .blog-post__tags {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-post__header h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-post__meta {
+    display: flex;
+    gap: var(--space-md);
+    font-size: var(--text-sm);
+    font-family: var(--font-mono);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .blog-post__cover {
+    width: 100%;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2xl);
+    object-fit: cover;
+  }
+
+  /* Prose styles for blog content */
+  .prose :global(h2) {
+    font-size: var(--text-2xl);
+    margin-top: var(--space-3xl);
+    margin-bottom: var(--space-md);
+  }
+
+  .prose :global(h3) {
+    font-size: var(--text-xl);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-sm);
+  }
+
+  .prose :global(p) {
+    font-size: var(--text-lg);
+    line-height: 1.8;
+    margin-bottom: var(--space-lg);
+    max-width: none;
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    list-style: disc;
+  }
+
+  .prose :global(li) {
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    margin-bottom: var(--space-sm);
+  }
+
+  .prose :global(blockquote) {
+    border-left: 3px solid var(--yellow);
+    padding-left: var(--space-lg);
+    margin-block: var(--space-xl);
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--grey);
+  }
+
+  .prose :global(a) {
+    color: var(--black);
+    text-decoration: underline;
+    text-decoration-color: var(--yellow);
+    text-underline-offset: 3px;
+  }
+
+  .prose :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--grey-light);
+    padding: 0.2em 0.4em;
+    border-radius: var(--radius-sm);
+  }
+
+  .prose :global(pre) {
+    background: var(--navy);
+    color: var(--white);
+    padding: var(--space-xl);
+    border-radius: var(--radius-md);
+    overflow-x: auto;
+    margin-bottom: var(--space-lg);
+  }
+
+  .prose :global(pre code) {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+
+  .prose :global(img) {
+    border-radius: var(--radius-md);
+    margin-block: var(--space-xl);
+  }
+</style>

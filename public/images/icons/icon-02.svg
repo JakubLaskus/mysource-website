@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_2" data-name="Warstwa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 198.43 198.43">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #c7d5c1;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-2 {
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="-811.44" y="246.21" width="273.8" height="197.5"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-1" x="42" y="21.73" width="76.64" height="76.64"/>
+    </clipPath>
+  </defs>
+  <g id="Warstwa_1-2" data-name="Warstwa 1-2">
+    <g id="Group_41746" data-name="Group 41746">
+      <g class="cls-5">
+        <g id="Mask_Group_10" data-name="Mask Group 10">
+          <g id="Group_41628" data-name="Group 41628">
+            <g id="Group_41627" data-name="Group 41627">
+              <rect id="Rectangle_3390" data-name="Rectangle 3390" class="cls-1" x="-667.53" y="54.46" width="724.19" height="595.24" transform="translate(-87.03 -59.68) rotate(-13)"/>
+            </g>
+            <path id="Path_46233" data-name="Path 46233" class="cls-1" d="M101.97,160.41l-529.52,493.04-406.41-435.16L-304.44-274.75,101.97,160.41Z"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g id="Group_41716" data-name="Group 41716">
+    <g id="Studying_Learning_7" data-name="Studying Learning 7">
+      <path id="Path_32537" data-name="Path 32537" class="cls-2" d="M40.4,198.43v-16.66h-6.18c-9.2.01-16.66-7.44-16.67-16.63v-16.71H3.35c-1.86,0-3.36-1.51-3.35-3.37,0-.35.06-.7.16-1.03,7.4-22.97,13.45-47.02,28.83-61.09"/>
+      <path id="Path_32538" data-name="Path 32538" class="cls-2" d="M96.01,168.49v29.94"/>
+      <path id="Path_33061" data-name="Path 33061" class="cls-2" d="M40.4,198.43v-16.66h-6.18c-9.2.01-16.66-7.44-16.67-16.63v-16.71H3.35c-1.86,0-3.36-1.51-3.35-3.37,0-.35.06-.7.16-1.03,7.4-22.97,13.45-47.02,28.83-61.09"/>
+      <path id="Path_33062" data-name="Path 33062" class="cls-2" d="M117.43,106.07c.29,43.88-7.47,52.24-21.43,62.42v29.94"/>
+    </g>
+    <g id="Group_41703" data-name="Group 41703">
+      <g class="cls-4">
+        <g id="Group_41702" data-name="Group 41702">
+          <path id="Path_46223" data-name="Path 46223" class="cls-3" d="M118.63,61.97h0v-3.83c-20.1,0-36.4-16.29-36.4-36.4h0s-3.83,0-3.83,0c0,20.1-16.3,36.4-36.4,36.4h0v3.83c20.1,0,36.4,16.3,36.4,36.4h3.83c0-20.1,16.3-36.4,36.4-36.4h0"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

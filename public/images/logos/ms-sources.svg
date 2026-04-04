@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_1" data-name="Warstwa 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1537 385.05">
+  <g>
+    <line x1="1344.52" y1="384.55" x2="1344.52" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="1248.54" y1="384.55" x2="1248.54" y2="192.67" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="1440.51" y1="384.55" x2="1440.51" y2="192.48" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <path d="M1344.52,192.67c53.12,0,96.08-42.96,96.08-96.08S1397.55.5,1344.52.5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <path d="M1344.52,288.85c53.03,0,95.99-42.96,95.99-96.08s-42.96-96.08-95.99-96.08" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <path d="M1536.5,192.67c-53.03,0-95.89-42.96-95.89-96.08S1483.47.5,1536.5.5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <path d="M1536.5,288.85c-52.93,0-95.79-42.96-95.79-96.08s42.87-96.08,95.79-96.08" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="1152.55" y1="192.67" x2="1344.52" y2="192.67" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="1152.45" y1="96.58" x2="1344.52" y2="96.58" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="1154.39" y1="288.85" x2="1344.52" y2="288.85" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  </g>
+  <g>
+    <line x1="192.48" y1="384.55" x2="192.48" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="288.46" y1="384.55" x2="288.46" y2="232.24" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="96.49" y1="384.55" x2="96.49" y2="136.26" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="96.49" y1="136.26" x2="192.48" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="192.48" y1=".5" x2="288.46" y2="232.24" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <path d="M96.49,232.34c53.03,0,95.99-42.96,95.99-96.08H.5c0,53.03,42.96,96.08,95.99,96.08Z" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <path d="M288.46,136.26c-53.03,0-95.99,42.96-95.99,96.08h191.98c0-53.12-42.96-96.08-95.99-96.08Z" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  </g>
+  <line x1="576.62" y1="384.55" x2="576.62" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  <g>
+    <circle cx="576.62" cy="193.15" r="51.28" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="480.63" y1="384.55" x2="480.63" y2="191.99" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <line x1="672.61" y1="384.55" x2="672.61" y2="193.15" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <circle cx="576.62" cy="191.99" r="95.99" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <circle cx="576.62" cy="191.99" r="142.53" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    <circle cx="576.62" cy="191.99" r="191.49" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  </g>
+  <rect x=".5" y=".5" width="1536" height="384.05" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  <line x1="384.45" y1="384.55" x2="384.45" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  <line x1="768.21" y1="384.55" x2="768.21" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  <g>
+    <g>
+      <line x1="960.19" y1="384.55" x2="960.19" y2="4.18" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <line x1="960.19" y1="384.55" x2="960.19" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <line x1="864.2" y1="384.55" x2="864.2" y2="193.15" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <line x1="1056.17" y1="384.55" x2="1056.17" y2="192.48" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <path d="M960.19,96.49c53.03,0,95.99-42.96,95.99-95.99h-191.98c0,53.03,42.96,95.99,95.99,95.99Z" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <path d="M960.19,288.46c53.03,0,95.99-42.96,95.99-95.99h-191.98c0,53.03,42.96,95.99,95.99,95.99Z" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <path d="M1056.17,192.48c53.03,0,95.99-42.96,95.99-95.99h-191.98c0,53.03,42.96,95.99,95.99,95.99Z" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+      <path d="M864.2,192.48c53.03,0,95.99-42.96,95.99-95.99h-191.98c0,53.03,42.96,95.99,95.99,95.99Z" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+    </g>
+    <line x1="1152.45" y1="384.55" x2="1152.45" y2=".5" vector-effect="non-scaling-stroke" style="fill: none; stroke: #313130; stroke-miterlimit: 10;"/>
+  </g>
+</svg>

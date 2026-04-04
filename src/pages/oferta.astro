@@ -1,0 +1,483 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTA from '../components/CTA.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { methods } from '../data/methods';
+import { pathCategories } from '../data/paths';
+
+const schemas = [
+  {
+    type: 'breadcrumb' as const,
+    data: {
+      items: [
+        { name: 'Strona główna', url: 'https://www.mysource.pl/' },
+        { name: 'Oferta', url: 'https://www.mysource.pl/oferta' },
+      ],
+    },
+  },
+  {
+    type: 'service' as const,
+    data: {
+      name: 'Mysource LAB - Programy szkoleniowe',
+      description: 'Kompleksowe programy szkoleniowe dla pracowników i zespołów odpowiadające na wyzwania współczesnego środowiska pracy.',
+      serviceType: 'Training and Development',
+      url: 'https://www.mysource.pl/oferta',
+      offers: methods.map((m) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: m.title,
+          description: m.description,
+        },
+      })),
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Oferta — Szkolenia i programy rozwojowe | Mysource LAB"
+  description="Zadbaj o rozwój i dobrostan swoich pracowników. Szkolenia wellbeingowe, technologiczno-transformacyjne i liderskie. 10 ścieżek, 30+ ekspertów."
+  schemas={schemas}
+>
+  <!-- ════════ HERO ════════ -->
+  <section class="oferta-hero">
+    <div class="container container--wide">
+      <span class="label" style="color: var(--sage-dark);" data-reveal="none">LAB</span>
+      <h1 class="oferta-hero__title" data-reveal-words data-reveal-delay="100">
+        Zadbaj o rozwój<br />i dobrostan swoich<br />pracowników
+      </h1>
+      <div class="oferta-hero__grid">
+        <p class="oferta-hero__lead" data-reveal data-reveal-delay="250">
+          Oferujemy kompleksowe programy szkoleniowe dla pracowników i zespołów, które realnie odpowiadają na wyzwania współczesnego środowiska pracy.
+        </p>
+        <p class="oferta-hero__sub" data-reveal data-reveal-delay="350">
+          Wychodzimy daleko poza ramy tradycyjnych szkoleń. Projektujemy angażujące, głębokie doświadczenia rozwojowe, w których solidna wiedza naukowa harmonijnie łączy się z najnowszymi metodami budowania dobrostanu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ 3 OBSZARY ════════ -->
+  <section class="areas">
+    <div class="container container--wide">
+      <div class="areas__header" data-reveal>
+        <span class="label">Trzy obszary</span>
+        <p class="areas__intro">
+          Aby kompleksowo zaopiekować każdy obszar dobrostanu w Twojej organizacji, nasze szkolenia podzieliliśmy na <strong>3 kluczowe obszary</strong>:
+        </p>
+      </div>
+      <div class="areas__grid" data-reveal-stagger>
+        {pathCategories.map((cat, i) => (
+          <div class="areas__card" data-hover-lift>
+            <span class="areas__card-number font-mono">{String(i + 1).padStart(2, '0')}</span>
+            <h2 class="areas__card-title">{cat.title}</h2>
+            <p class="areas__card-subtitle font-display">{cat.subtitle}</p>
+            <p class="areas__card-desc">{cat.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ ŚCIEŻKI INTRO ════════ -->
+  <section class="paths-intro" id="sciezki">
+    <div class="container container--wide">
+      <div class="paths-intro__grid">
+        <div class="paths-intro__left" data-reveal="left">
+          <span class="label">Ścieżki</span>
+          <h2 class="paths-intro__title">Jak wspieramy wasze zespoły?</h2>
+        </div>
+        <div class="paths-intro__right" data-reveal>
+          <p class="paths-intro__text">
+            Nasze warsztaty rozwojowe realizujemy w ramach ścieżek, które obejmują kluczowe aspekty dobrostanu ludzi w organizacjach. Ścieżki współtworzone są przez ekspertów — kuratorów, którzy odpowiadają za ich treść i ramowy scenariusz.
+          </p>
+          <p class="paths-intro__text">
+            Dla każdego klienta projektujemy indywidualny program, dostosowany do konkretnych wyzwań i celów organizacji.
+          </p>
+          <a href="/sciezki" class="btn btn--primary">Poznaj nasze rozwiązania</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ SZKOLENIA PO KATEGORIACH ════════ -->
+  {pathCategories.map((cat) => (
+    <section class:list={['category-section', cat.colorClass || 'section--white']} id={cat.id}>
+      <div class="container container--wide">
+        <div class="category-section__header">
+          <span class="label">{cat.number}</span>
+          <h2 class="category-section__title">{cat.title}</h2>
+          <p class="category-section__subtitle">{cat.subtitle}. {cat.description}</p>
+        </div>
+
+        <div class="paths-list">
+          {cat.paths.map((path) => (
+            <details class="path-item">
+              <summary class="path-item__summary">
+                <span class="path-item__title font-display">{path.title}</span>
+                <span class="path-item__curator font-mono">{path.curatorName}</span>
+                <span class="path-item__icon">+</span>
+              </summary>
+              <div class="path-item__content">
+                <p>{path.description}</p>
+              </div>
+            </details>
+          ))}
+        </div>
+
+        <div class="category-section__actions">
+          <a href="#" class="btn btn--ghost">Poznaj nasze propozycje warsztatów</a>
+          <div class="category-section__downloads">
+            <a href="#" class="btn btn--outline">Pobierz ofertę</a>
+            <a href="/kontakt#formularz" class="btn btn--outline">Wypełnij formularz</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- ════════ METODY ════════ -->
+  <section class="metody" id="metody">
+    <div class="container container--wide">
+      <div class="metody__header" data-reveal>
+        <span class="label" style="color: var(--sand);">Jak budujemy gotowość?</span>
+        <h2 class="metody__title">Metody w <em class="font-mono">my</em>source</h2>
+      </div>
+      <p class="metody__intro">
+        W naszej ofercie znajdziesz szeroki wachlarz praktyk i metod zaprojektowanych z myślą o wspieraniu dobrostanu każdego członka organizacji.
+      </p>
+      <div class="metody__grid" data-reveal-stagger>
+        {methods.map((method) => (
+          <div class="metody__card">
+            <h3 class="metody__card-title">{method.title}</h3>
+            <p class="metody__card-desc">{method.description}</p>
+            <ul class="metody__card-list">
+              {method.items.map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ CTA ════════ -->
+  <CTA variant="ember" />
+
+  <!-- ════════ NEWSLETTER ════════ -->
+  <Newsletter />
+</BaseLayout>
+
+<style>
+  /* ─── Hero ─── */
+  .oferta-hero {
+    padding-top: var(--space-5xl);
+    padding-bottom: var(--space-4xl);
+    background-color: var(--white);
+  }
+
+  .oferta-hero__title {
+    font-size: var(--text-5xl);
+    font-family: var(--font-display-light);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    max-width: 16ch;
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-3xl);
+  }
+
+  .oferta-hero__grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-3xl);
+  }
+
+  .oferta-hero__lead {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: none;
+  }
+
+  .oferta-hero__sub {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--grey);
+    max-width: none;
+  }
+
+  /* ─── Areas ─── */
+  .areas {
+    padding-block: var(--space-5xl);
+    background-color: var(--cream);
+  }
+
+  .areas__header {
+    margin-bottom: var(--space-4xl);
+  }
+
+  .areas__intro {
+    font-size: var(--text-xl);
+    line-height: 1.6;
+    max-width: 50ch;
+    margin-top: var(--space-lg);
+  }
+
+  .areas__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .areas__card {
+    padding: var(--space-2xl);
+    background: var(--white);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .areas__card-number {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: var(--sand);
+    line-height: 1;
+  }
+
+  .areas__card-title {
+    font-size: var(--text-xl);
+    margin-top: var(--space-sm);
+  }
+
+  .areas__card-subtitle {
+    font-style: italic;
+    color: var(--grey);
+    font-size: var(--text-base);
+    font-weight: 400;
+  }
+
+  .areas__card-desc {
+    font-size: var(--text-sm);
+    color: var(--grey);
+    margin-top: var(--space-sm);
+  }
+
+  /* ─── Paths Intro ─── */
+  .paths-intro {
+    padding-block: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .paths-intro__grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-3xl);
+    align-items: start;
+  }
+
+  .paths-intro__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-md);
+    line-height: 1.2;
+  }
+
+  .paths-intro__text {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    color: var(--grey);
+    margin-bottom: var(--space-lg);
+    max-width: none;
+  }
+
+  /* ─── Category sections ─── */
+  .category-section {
+    padding-block: var(--space-4xl);
+  }
+
+  .category-section__header {
+    margin-bottom: var(--space-2xl);
+  }
+
+  .category-section__title {
+    font-size: var(--text-3xl);
+    margin-top: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .category-section__subtitle {
+    font-size: var(--text-base);
+    color: var(--grey);
+    max-width: 65ch;
+  }
+
+  /* Paths accordion */
+  .paths-list {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .path-item {
+    border-top: 1px solid rgba(26, 26, 25, 0.1);
+  }
+
+  .path-item:last-child {
+    border-bottom: 1px solid rgba(26, 26, 25, 0.1);
+  }
+
+  .path-item__summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    padding: var(--space-lg) 0;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .path-item__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .path-item__title {
+    font-size: var(--text-xl);
+    flex-grow: 1;
+  }
+
+  .path-item__curator {
+    font-size: var(--text-xs);
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .path-item__icon {
+    font-size: var(--text-2xl);
+    font-weight: 300;
+    color: var(--grey);
+    transition: transform 0.2s;
+  }
+
+  .path-item[open] .path-item__icon {
+    transform: rotate(45deg);
+  }
+
+  .path-item__content {
+    padding-bottom: var(--space-xl);
+    max-width: 65ch;
+  }
+
+  .path-item__content p {
+    color: var(--grey);
+    line-height: 1.8;
+  }
+
+  .category-section__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .category-section__downloads {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  /* ─── Metody ─── */
+  .metody {
+    padding-block: var(--space-5xl);
+    background-color: var(--deep);
+    color: var(--white);
+  }
+
+  .metody__header {
+    margin-bottom: var(--space-lg);
+  }
+
+  .metody__title {
+    font-size: var(--text-4xl);
+    margin-top: var(--space-md);
+  }
+
+  .metody__intro {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: var(--space-4xl);
+    max-width: 55ch;
+    font-size: var(--text-lg);
+    line-height: 1.7;
+  }
+
+  .metody__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+  }
+
+  .metody__card {
+    padding: var(--space-xl);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s;
+  }
+
+  .metody__card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .metody__card-title {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 400;
+    margin-bottom: var(--space-sm);
+  }
+
+  .metody__card-desc {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-md);
+  }
+
+  .metody__card-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .metody__card-list li::before {
+    content: '—  ';
+    color: var(--sand);
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 768px) {
+    .oferta-hero__grid,
+    .paths-intro__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+
+    .areas__grid,
+    .metody__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .path-item__summary {
+      flex-wrap: wrap;
+    }
+
+    .path-item__curator {
+      order: 3;
+      width: 100%;
+    }
+
+    .category-section__downloads {
+      flex-direction: column;
+    }
+  }
+</style>

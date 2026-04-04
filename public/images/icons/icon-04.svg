@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Warstwa_2" data-name="Warstwa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 198.43 198.43">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #313130;
+        stroke: #fff;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .cls-3 {
+        clip-path: url(#clippath-1);
+      }
+
+      .cls-4 {
+        fill: #f0ddc9;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-1" x="-541.42" y="-26.95" width="273.8" height="197.5"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect class="cls-1" x="-541.41" y="509.05" width="273.8" height="197.5"/>
+    </clipPath>
+  </defs>
+  <g id="Warstwa_1-2" data-name="Warstwa 1-2">
+    <g id="Group_41746" data-name="Group 41746">
+      <g class="cls-5">
+        <g id="Mask_Group_10" data-name="Mask Group 10">
+          <g id="Group_41628" data-name="Group 41628">
+            <g id="Group_41627" data-name="Group 41627">
+              <rect id="Rectangle_3390" data-name="Rectangle 3390" class="cls-1" x="-397.5" y="-218.7" width="724.19" height="595.24" transform="translate(-18.66 -5.94) rotate(-13)"/>
+            </g>
+            <path id="Path_46233" data-name="Path 46233" class="cls-1" d="M371.99-112.75L-157.53,380.29-563.94-54.87-34.42-547.91,371.99-112.75Z"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+  <g class="cls-3">
+    <g id="Mask_Group_10-2" data-name="Mask Group 10">
+      <g id="Group_41628-2" data-name="Group 41628">
+        <path id="Path_46233-2" data-name="Path 46233" class="cls-1" d="M371.99,423.25L-157.53,916.29l-406.41-435.16L-34.42-11.92l406.41,435.16Z"/>
+      </g>
+    </g>
+  </g>
+  <g id="Group_41712" data-name="Group 41712">
+    <path id="Path_46224" data-name="Path 46224" class="cls-4" d="M106.14,51.95v27.95l-19.76-19.76-8.9,8.9,19.76,19.76h-27.95v12.58h27.95l-19.76,19.76,8.9,8.9,19.76-19.76v27.95h12.58v-27.95l19.76,19.76,8.9-8.89-19.77-19.76h27.95v-12.58h-27.95l19.76-19.76-8.9-8.9-19.76,19.77v-27.95h-12.58Z"/>
+    <g id="YogaStretching_1" data-name="YogaStretching 1">
+      <circle id="Ellipse_5102" data-name="Ellipse 5102" class="cls-2" cx="15.92" cy="125.17" r="15.92"/>
+      <path id="Path_35910" data-name="Path 35910" class="cls-2" d="M141.21,197.4c4.72-2.35,6.63-8.08,4.28-12.8,0,0,0-.01-.01-.02-2.46-4.92-23.3-49.48-32.05-68.03-2.11-4.45-6.6-7.29-11.53-7.29h-38.21v-47.76c0-5.28-4.28-9.55-9.55-9.55s-9.55,4.28-9.55,9.55v127.37c0,5.28,4.28,9.55,9.55,9.55s9.55-4.28,9.55-9.55h0v-47.76h21.16l-20.16,43.49c-2.33,4.73-.39,10.46,4.35,12.8,4.69,2.31,10.38.42,12.74-4.25l23.3-48.85,23.3,48.85c2.39,4.69,8.1,6.58,12.81,4.25Z"/>
+    </g>
+  </g>
+</svg>

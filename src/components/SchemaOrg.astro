@@ -1,0 +1,159 @@
+---
+interface Props {
+  type: 'organization' | 'website' | 'service' | 'course' | 'article' | 'faq' | 'breadcrumb' | 'person' | 'howto';
+  data?: Record<string, unknown>;
+}
+
+const { type, data = {} } = Astro.props;
+const siteUrl = 'https://www.mysource.pl';
+
+function buildSchema(type: string, data: Record<string, unknown>) {
+  switch (type) {
+    case 'organization':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        '@id': `${siteUrl}/#organization`,
+        name: 'Mysource',
+        url: siteUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: `${siteUrl}/images/logo-mysource.svg`,
+        },
+        description: 'Mysource to strategiczny partner transformacji organizacyjnej, który łączy dobrostan ludzi z pragmatyką biznesu w kontekście zmian technologicznych.',
+        foundingDate: '2020',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'Warszawa',
+          addressCountry: 'PL',
+        },
+        sameAs: [
+          'https://www.instagram.com/mysource.pl/',
+          'https://www.linkedin.com/company/mysource-pl/',
+        ],
+        knowsAbout: [
+          'Transformacja organizacyjna',
+          'AI Readiness',
+          'Wellbeing w organizacjach',
+          'Przywództwo w erze AI',
+          'Diagnostyka organizacyjna',
+          'Human Readiness',
+        ],
+        ...data,
+      };
+
+    case 'website':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        '@id': `${siteUrl}/#website`,
+        url: siteUrl,
+        name: 'Mysource',
+        description: 'Strategiczny partner transformacji organizacji',
+        publisher: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'pl-PL',
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: {
+            '@type': 'EntryPoint',
+            urlTemplate: `${siteUrl}/blog?q={search_term_string}`,
+          },
+          'query-input': 'required name=search_term_string',
+        },
+        ...data,
+      };
+
+    case 'service':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        provider: { '@id': `${siteUrl}/#organization` },
+        areaServed: {
+          '@type': 'Country',
+          name: 'Poland',
+        },
+        ...data,
+      };
+
+    case 'course':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Course',
+        provider: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'pl-PL',
+        courseMode: 'onsite',
+        ...data,
+      };
+
+    case 'article':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        publisher: { '@id': `${siteUrl}/#organization` },
+        inLanguage: 'pl-PL',
+        ...data,
+      };
+
+    case 'faq':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: data.questions
+          ? (data.questions as Array<{ question: string; answer: string }>).map((q) => ({
+              '@type': 'Question',
+              name: q.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: q.answer,
+              },
+            }))
+          : [],
+      };
+
+    case 'breadcrumb':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: data.items
+          ? (data.items as Array<{ name: string; url: string }>).map((item, i) => ({
+              '@type': 'ListItem',
+              position: i + 1,
+              name: item.name,
+              item: item.url,
+            }))
+          : [],
+      };
+
+    case 'person':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        worksFor: { '@id': `${siteUrl}/#organization` },
+        ...data,
+      };
+
+    case 'howto':
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        inLanguage: 'pl-PL',
+        step: data.steps
+          ? (data.steps as Array<{ name: string; text: string; position: number }>).map((s) => ({
+              '@type': 'HowToStep',
+              position: s.position,
+              name: s.name,
+              text: s.text,
+            }))
+          : [],
+        ...data,
+      };
+
+    default:
+      return data;
+  }
+}
+
+const schema = buildSchema(type, data);
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
