@@ -22,4 +22,12 @@ export default defineConfig({
     defaultLocale: 'pl',
     locales: ['pl'],
   },
+  vite: {
+    resolve: {
+      dedupe: ['react', 'react-dom'],
+    },
+    ssr: {
+      noExternal: ['@keystatic/*'],
+    },
+  },
 });
