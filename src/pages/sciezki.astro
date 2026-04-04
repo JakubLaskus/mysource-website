@@ -100,7 +100,7 @@ const sectionBgs: Record<string, string> = {
                 {path.videoId && (
                   <div class="path-card__video">
                     <iframe
-                      src={`https://www.youtube.com/embed/${path.videoId}?rel=0`}
+                      src={`https://www.youtube-nocookie.com/embed/${path.videoId}?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&fs=1`}
                       title={`${path.title} — video`}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowfullscreen
@@ -270,7 +270,8 @@ const sectionBgs: Record<string, string> = {
   }
 
   .path-card__video {
-    margin-top: var(--space-lg);
+    margin-top: auto;
+    padding-top: var(--space-lg);
     aspect-ratio: 16 / 9;
     border-radius: 8px;
     overflow: hidden;
