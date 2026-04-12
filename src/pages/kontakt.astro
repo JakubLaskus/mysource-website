@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
 
 const schemas = [
   {
@@ -22,7 +23,7 @@ const schemas = [
   <!-- ════════ HERO ════════ -->
   <section class="kontakt-hero">
     <div class="container container--wide">
-      <span class="label" style="color: var(--ember);" data-reveal="none">Kontakt</span>
+      <SectionHeader label="Kontakt" variant="light" />
       <h1 class="kontakt-hero__title" data-reveal-words data-reveal-delay="100">
         Porozmawiajmy<br />o przyszłości Twojej<br />organizacji
       </h1>
@@ -32,50 +33,54 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ════════ FORM + CALENDLY ════════ -->
-  <section class="kontakt-main">
+  <!-- ════════ CALENDLY ════════ -->
+  <section class="kontakt-calendly-section" id="spotkanie">
     <div class="container container--wide">
-      <div class="kontakt-main__grid">
-        <!-- Calendly -->
-        <div class="kontakt-calendly" id="spotkanie" data-reveal="left">
-          <div class="kontakt-calendly__header">
-            <span class="label">Umów spotkanie</span>
-            <p class="kontakt-calendly__desc">
-              Wybierz dogodny termin na bezpłatną konsultację strategiczną. Porozmawiamy o wyzwaniach Twojej organizacji i zaproponujemy kierunek działania.
-            </p>
-          </div>
-          <div class="kontakt-calendly__placeholder">
-            <p class="text-muted">Kalendarz Calendly zostanie załadowany tutaj</p>
-          </div>
+      <SectionHeader label="Umów spotkanie" number="01" variant="dark" />
+      <div class="editorial-grid">
+        <div></div>
+        <div>
+          <p class="kontakt-calendly__desc">
+            Wybierz dogodny termin na bezpłatną konsultację strategiczną. Porozmawiamy o wyzwaniach Twojej organizacji i zaproponujemy kierunek działania.
+          </p>
         </div>
+      </div>
+      <div class="kontakt-calendly__placeholder glass-card">
+        <p>Kalendarz Calendly zostanie załadowany tutaj</p>
+      </div>
+    </div>
+  </section>
 
-        <!-- Form -->
-        <div class="kontakt-form-wrapper" id="formularz" data-reveal="right">
-          <span class="label">Wypełnij formularz</span>
+  <!-- ════════ FORM ════════ -->
+  <section class="kontakt-form-section" id="formularz">
+    <div class="container container--wide">
+      <SectionHeader label="Formularz" number="02" variant="light" />
+      <div class="kontakt-form-layout">
+        <div class="kontakt-form-intro" data-reveal>
           <p class="kontakt-form__desc">
             Opisz swoje potrzeby, a my odezwiemy się w ciągu 24 godzin.
           </p>
-          <form class="kontakt-form" action="/api/contact" method="POST">
-            <div class="kontakt-form__row">
-              <input type="text" name="name" class="input" placeholder="Imię i nazwisko" required aria-label="Imię i nazwisko" />
-              <input type="email" name="email" class="input" placeholder="Adres e-mail" required aria-label="Adres e-mail" />
-            </div>
-            <div class="kontakt-form__row">
-              <input type="tel" name="phone" class="input" placeholder="Telefon" aria-label="Telefon" />
-              <input type="text" name="company" class="input" placeholder="Firma" aria-label="Firma" />
-            </div>
-            <input type="text" name="role" class="input" placeholder="Stanowisko" aria-label="Stanowisko" />
-            <textarea name="message" class="input" placeholder="W czym możemy pomóc?" rows="5" required aria-label="Wiadomość"></textarea>
-            <label class="kontakt-form__consent">
-              <input type="checkbox" name="gdpr" required />
-              <span>
-                Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z
-                <a href="/polityka-prywatnosci">polityką prywatności</a>.
-              </span>
-            </label>
-            <button type="submit" class="btn btn--primary">Wyślij wiadomość</button>
-          </form>
         </div>
+        <form class="kontakt-form" action="/api/contact" method="POST" data-reveal data-reveal-delay="150">
+          <div class="kontakt-form__row">
+            <input type="text" name="name" class="input" placeholder="Imię i nazwisko" required aria-label="Imię i nazwisko" />
+            <input type="email" name="email" class="input" placeholder="Adres e-mail" required aria-label="Adres e-mail" />
+          </div>
+          <div class="kontakt-form__row">
+            <input type="tel" name="phone" class="input" placeholder="Telefon" aria-label="Telefon" />
+            <input type="text" name="company" class="input" placeholder="Firma" aria-label="Firma" />
+          </div>
+          <input type="text" name="role" class="input" placeholder="Stanowisko" aria-label="Stanowisko" />
+          <textarea name="message" class="input" placeholder="W czym możemy pomóc?" rows="5" required aria-label="Wiadomość"></textarea>
+          <label class="kontakt-form__consent">
+            <input type="checkbox" name="gdpr" required />
+            <span>
+              Wyrażam zgodę na przetwarzanie moich danych osobowych zgodnie z
+              <a href="/polityka-prywatnosci">polityką prywatności</a>.
+            </span>
+          </label>
+          <button type="submit" class="btn btn--primary">Wyślij wiadomość</button>
+        </form>
       </div>
     </div>
   </section>
@@ -90,13 +95,12 @@ const schemas = [
   }
 
   .kontakt-hero__title {
-    font-size: var(--text-5xl);
+    font-size: var(--text-6xl);
     font-family: var(--font-display-light);
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.0;
     max-width: 16ch;
-    margin-top: var(--space-md);
     margin-bottom: var(--space-xl);
   }
 
@@ -107,46 +111,49 @@ const schemas = [
     line-height: 1.6;
   }
 
-  /* ─── Main ─── */
-  .kontakt-main {
+  /* ─── Calendly (dark) ─── */
+  .kontakt-calendly-section {
     padding-block: var(--space-5xl);
-    background-color: var(--white);
-  }
-
-  .kontakt-main__grid {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: var(--space-4xl);
-    align-items: start;
+    background-color: var(--deep);
+    color: var(--white);
   }
 
   .kontakt-calendly__desc {
-    font-size: var(--text-base);
-    color: var(--grey);
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.6);
     line-height: 1.8;
-    margin-top: var(--space-md);
-    margin-bottom: var(--space-xl);
-    max-width: none;
+    max-width: 55ch;
+    margin-bottom: var(--space-3xl);
   }
 
   .kontakt-calendly__placeholder {
     padding: var(--space-4xl);
-    background: var(--grey-light);
-    border-radius: var(--radius-md);
     text-align: center;
     min-height: 400px;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: rgba(255, 255, 255, 0.4);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
   }
 
-  /* ─── Form ─── */
+  /* ─── Form (light) ─── */
+  .kontakt-form-section {
+    padding-block: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .kontakt-form-layout {
+    max-width: 700px;
+  }
+
   .kontakt-form__desc {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     color: var(--grey);
-    margin-top: var(--space-md);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-3xl);
     line-height: 1.7;
+    max-width: 45ch;
   }
 
   .kontakt-form {
@@ -181,10 +188,6 @@ const schemas = [
 
   /* ─── Responsive ─── */
   @media (max-width: 768px) {
-    .kontakt-main__grid {
-      grid-template-columns: 1fr;
-    }
-
     .kontakt-form__row {
       grid-template-columns: 1fr;
     }

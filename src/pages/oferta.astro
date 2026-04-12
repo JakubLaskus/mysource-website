@@ -2,8 +2,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Newsletter from '../components/Newsletter.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CornerBrackets from '../components/CornerBrackets.astro';
+import EditorialQuote from '../components/EditorialQuote.astro';
 import { methods } from '../data/methods';
 import { pathCategories } from '../data/paths';
+import { curators } from '../data/team';
+
+const curatorMap = Object.fromEntries(curators.map((c) => [c.id, c]));
 
 const schemas = [
   {
@@ -11,7 +17,7 @@ const schemas = [
     data: {
       items: [
         { name: 'Strona główna', url: 'https://www.mysource.pl/' },
-        { name: 'Oferta', url: 'https://www.mysource.pl/oferta' },
+        { name: 'LAB', url: 'https://www.mysource.pl/oferta' },
       ],
     },
   },
@@ -32,28 +38,66 @@ const schemas = [
       })),
     },
   },
+  ...pathCategories.flatMap((cat) =>
+    cat.paths.map((path) => ({
+      type: 'course' as const,
+      data: {
+        name: `${path.title} - ${cat.title}`,
+        description: path.description,
+        url: `https://www.mysource.pl/oferta#${path.id}`,
+        courseCategory: cat.title,
+        numberOfCredits: path.number,
+      },
+    }))
+  ),
 ];
+
+const catConfig: Record<string, { bg: string; dark: boolean; cardClass: string; headerVariant: 'light' | 'dark' }> = {
+  wellbeing:        { bg: '',              dark: false, cardClass: 'path-card',            headerVariant: 'light' },
+  'tech-transform': { bg: 'section--deep', dark: true,  cardClass: 'path-card glass-card', headerVariant: 'dark'  },
+  leadership:       { bg: 'section--cream', dark: false, cardClass: 'path-card',            headerVariant: 'light' },
+};
 ---
 
 <BaseLayout
-  title="Oferta — Szkolenia i programy rozwojowe | Mysource LAB"
+  title="LAB — Szkolenia i programy rozwojowe | Mysource"
   description="Zadbaj o rozwój i dobrostan swoich pracowników. Szkolenia wellbeingowe, technologiczno-transformacyjne i liderskie. 10 ścieżek, 30+ ekspertów."
   schemas={schemas}
 >
   <!-- ════════ HERO ════════ -->
-  <section class="oferta-hero">
+  <section class="lab-hero">
     <div class="container container--wide">
-      <span class="label" style="color: var(--sage-dark);" data-reveal="none">LAB</span>
-      <h1 class="oferta-hero__title" data-reveal-words data-reveal-delay="100">
-        Zadbaj o rozwój<br />i dobrostan swoich<br />pracowników
+      <SectionHeader label="LAB" variant="light" />
+      <h1 class="lab-hero__title" data-reveal-words data-reveal-delay="100">
+        Zadbaj o rozwój i dobrostan swoich pracowników
       </h1>
-      <div class="oferta-hero__grid">
-        <p class="oferta-hero__lead" data-reveal data-reveal-delay="250">
-          Oferujemy kompleksowe programy szkoleniowe dla pracowników i zespołów, które realnie odpowiadają na wyzwania współczesnego środowiska pracy.
-        </p>
-        <p class="oferta-hero__sub" data-reveal data-reveal-delay="350">
-          Wychodzimy daleko poza ramy tradycyjnych szkoleń. Projektujemy angażujące, głębokie doświadczenia rozwojowe, w których solidna wiedza naukowa harmonijnie łączy się z najnowszymi metodami budowania dobrostanu.
-        </p>
+      <div class="editorial-grid">
+        <div></div>
+        <div>
+          <p class="lab-hero__lead" data-reveal data-reveal-delay="250">
+            Oferujemy kompleksowe programy szkoleniowe, które realnie odpowiadają na wyzwania współczesnego środowiska pracy.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════ LAB INTRO ════════ -->
+  <section class="lab-intro">
+    <div class="container container--wide">
+      <div class="editorial-grid">
+        <div></div>
+        <div>
+          <EditorialQuote variant="light">
+            <p class="lab-intro__statement font-display" data-reveal="clip-up">
+              Mysource LAB to ekosystem szkoleń i warsztatów. Wybierz ścieżkę dopasowaną do wyzwań Twojej organizacji.
+            </p>
+          </EditorialQuote>
+          <div data-reveal-line data-reveal-delay="300" style="margin: var(--space-xl) 0; color: var(--ink);"></div>
+          <p class="lab-intro__sub" data-reveal data-reveal-delay="400">
+            Wychodzimy daleko poza ramy tradycyjnych szkoleń. Projektujemy angażujące, głębokie doświadczenia rozwojowe, w których solidna wiedza naukowa harmonijnie łączy się z najnowszymi metodami budowania dobrostanu.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -61,87 +105,96 @@ const schemas = [
   <!-- ════════ 3 OBSZARY ════════ -->
   <section class="areas">
     <div class="container container--wide">
+      <SectionHeader label="Trzy obszary" number="01" variant="dark" />
       <div class="areas__header" data-reveal>
-        <span class="label">Trzy obszary</span>
         <p class="areas__intro">
           Aby kompleksowo zaopiekować każdy obszar dobrostanu w Twojej organizacji, nasze szkolenia podzieliliśmy na <strong>3 kluczowe obszary</strong>:
         </p>
       </div>
       <div class="areas__grid" data-reveal-stagger>
         {pathCategories.map((cat, i) => (
-          <div class="areas__card" data-hover-lift>
+          <a href={`#${cat.id}`} class="glass-card areas__card" data-hover-lift>
             <span class="areas__card-number font-mono">{String(i + 1).padStart(2, '0')}</span>
             <h2 class="areas__card-title">{cat.title}</h2>
             <p class="areas__card-subtitle font-display">{cat.subtitle}</p>
             <p class="areas__card-desc">{cat.description}</p>
-          </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ════════ ŚCIEŻKI INTRO ════════ -->
-  <section class="paths-intro" id="sciezki">
-    <div class="container container--wide">
-      <div class="paths-intro__grid">
-        <div class="paths-intro__left" data-reveal="left">
-          <span class="label">Ścieżki</span>
-          <h2 class="paths-intro__title">Jak wspieramy wasze zespoły?</h2>
-        </div>
-        <div class="paths-intro__right" data-reveal>
-          <p class="paths-intro__text">
-            Nasze warsztaty rozwojowe realizujemy w ramach ścieżek, które obejmują kluczowe aspekty dobrostanu ludzi w organizacjach. Ścieżki współtworzone są przez ekspertów — kuratorów, którzy odpowiadają za ich treść i ramowy scenariusz.
-          </p>
-          <p class="paths-intro__text">
-            Dla każdego klienta projektujemy indywidualny program, dostosowany do konkretnych wyzwań i celów organizacji.
-          </p>
-          <a href="/sciezki" class="btn btn--primary">Poznaj nasze rozwiązania</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- ════════ ŚCIEŻKI PO KATEGORIACH ════════ -->
+  {pathCategories.map((cat) => {
+    const cfg = catConfig[cat.id] || catConfig.wellbeing;
+    return (
+      <section class:list={['cat-section', cfg.bg]} id={cat.id}>
+        {cfg.dark && <CornerBrackets />}
+        <div class="container container--wide">
+          <SectionHeader label={cat.title} number={cat.number} variant={cfg.headerVariant} />
 
-  <!-- ════════ SZKOLENIA PO KATEGORIACH ════════ -->
-  {pathCategories.map((cat) => (
-    <section class:list={['category-section', cat.colorClass || 'section--white']} id={cat.id}>
-      <div class="container container--wide">
-        <div class="category-section__header">
-          <span class="label">{cat.number}</span>
-          <h2 class="category-section__title">{cat.title}</h2>
-          <p class="category-section__subtitle">{cat.subtitle}. {cat.description}</p>
-        </div>
+          <div class="cat-section__intro editorial-grid">
+            <div></div>
+            <div>
+              <p class:list={['cat-section__subtitle font-display', cfg.dark && 'text-light']} data-reveal>
+                {cat.subtitle}
+              </p>
+              <p class:list={['cat-section__desc', cfg.dark && 'text-light-muted']} data-reveal data-reveal-delay="150">
+                {cat.description}
+              </p>
+            </div>
+          </div>
 
-        <div class="paths-list">
-          {cat.paths.map((path) => (
-            <details class="path-item">
-              <summary class="path-item__summary">
-                <span class="path-item__title font-display">{path.title}</span>
-                <span class="path-item__curator font-mono">{path.curatorName}</span>
-                <span class="path-item__icon">+</span>
-              </summary>
-              <div class="path-item__content">
-                <p>{path.description}</p>
-              </div>
-            </details>
-          ))}
-        </div>
-
-        <div class="category-section__actions">
-          <a href="#" class="btn btn--ghost">Poznaj nasze propozycje warsztatów</a>
-          <div class="category-section__downloads">
-            <a href="#" class="btn btn--outline">Pobierz ofertę</a>
-            <a href="/kontakt#formularz" class="btn btn--outline">Wypełnij formularz</a>
+          <div class="cat-section__paths" data-reveal-stagger>
+            {cat.paths.map((path) => {
+              const curator = curatorMap[path.curatorId];
+              return (
+                <div class={cfg.cardClass} id={path.id}>
+                  <div class="path-card__number font-mono">{path.number}</div>
+                  <div class="path-card__curator">
+                    <img
+                      src={curator?.image || '/images/team/partner-4.png'}
+                      alt={path.curatorName}
+                      class="path-card__avatar"
+                      width="96"
+                      height="96"
+                      loading="lazy"
+                    />
+                    <div>
+                      <p class="path-card__curator-name">{path.curatorName}</p>
+                      <p class="path-card__curator-role font-mono text-muted">
+                        {curator?.role || `Kurator ścieżki ${path.title}`}
+                      </p>
+                    </div>
+                  </div>
+                  <h3 class="path-card__title">{path.title}</h3>
+                  <p class="path-card__desc">{path.description}</p>
+                  {path.videoId && (
+                    <div class="path-card__video">
+                      <iframe
+                        src={`https://www.youtube-nocookie.com/embed/${path.videoId}?rel=0&modestbranding=1&showinfo=0&iv_load_policy=3&fs=1`}
+                        title={`${path.title} — video`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen
+                        loading="lazy"
+                      ></iframe>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
-    </section>
-  ))}
+      </section>
+    );
+  })}
 
   <!-- ════════ METODY ════════ -->
-  <section class="metody" id="metody">
+  <section class="metody section--photo" id="metody">
+    <CornerBrackets />
     <div class="container container--wide">
+      <SectionHeader label="Metody" number="04" variant="dark" />
       <div class="metody__header" data-reveal>
-        <span class="label" style="color: var(--sand);">Jak budujemy gotowość?</span>
         <h2 class="metody__title">Metody w <em class="font-mono">my</em>source</h2>
       </div>
       <p class="metody__intro">
@@ -149,7 +202,7 @@ const schemas = [
       </p>
       <div class="metody__grid" data-reveal-stagger>
         {methods.map((method) => (
-          <div class="metody__card">
+          <div class="glass-card metody__card">
             <h3 class="metody__card-title">{method.title}</h3>
             <p class="metody__card-desc">{method.description}</p>
             <ul class="metody__card-list">
@@ -164,55 +217,73 @@ const schemas = [
   </section>
 
   <!-- ════════ CTA ════════ -->
-  <CTA variant="ember" />
+  <section class="cta-wrap">
+    <div class="container container--wide">
+      <SectionHeader label="Kontakt" number="05" variant="light" />
+    </div>
+    <CTA variant="ember" />
+  </section>
 
   <!-- ════════ NEWSLETTER ════════ -->
-  <Newsletter />
+  <section class="newsletter-wrap">
+    <div class="container container--wide">
+      <SectionHeader label="Newsletter" number="06" variant="light" />
+    </div>
+    <Newsletter />
+  </section>
 </BaseLayout>
 
 <style>
   /* ─── Hero ─── */
-  .oferta-hero {
+  .lab-hero {
     padding-top: var(--space-5xl);
-    padding-bottom: var(--space-4xl);
+    padding-bottom: var(--space-3xl);
     background-color: var(--white);
   }
 
-  .oferta-hero__title {
-    font-size: var(--text-5xl);
+  .lab-hero__title {
+    font-size: var(--text-6xl);
     font-family: var(--font-display-light);
-    font-weight: 400;
-    letter-spacing: -0.03em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     line-height: 1.05;
-    max-width: 16ch;
+    max-width: 18ch;
     margin-top: var(--space-md);
     margin-bottom: var(--space-3xl);
   }
 
-  .oferta-hero__grid {
-    display: grid;
-    grid-template-columns: 7fr 5fr;
-    gap: var(--space-3xl);
-  }
-
-  .oferta-hero__lead {
+  .lab-hero__lead {
     font-size: var(--text-xl);
     line-height: 1.6;
-    color: var(--ink);
-    max-width: none;
+    color: var(--grey);
+    max-width: 50ch;
   }
 
-  .oferta-hero__sub {
+  /* ─── LAB Intro ─── */
+  .lab-intro {
+    padding-bottom: var(--space-5xl);
+    background-color: var(--white);
+  }
+
+  .lab-intro__statement {
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+
+  .lab-intro__sub {
     font-size: var(--text-base);
     line-height: 1.8;
     color: var(--grey);
-    max-width: none;
+    max-width: 55ch;
   }
 
-  /* ─── Areas ─── */
+  /* ─── Areas (dark) ─── */
   .areas {
     padding-block: var(--space-5xl);
-    background-color: var(--cream);
+    background-color: var(--deep);
+    color: var(--white);
   }
 
   .areas__header {
@@ -223,7 +294,11 @@ const schemas = [
     font-size: var(--text-xl);
     line-height: 1.6;
     max-width: 50ch;
-    margin-top: var(--space-lg);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .areas__intro strong {
+    color: var(--white);
   }
 
   .areas__grid {
@@ -234,11 +309,10 @@ const schemas = [
 
   .areas__card {
     padding: var(--space-2xl);
-    background: var(--white);
-    border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
+    text-decoration: none;
   }
 
   .areas__card-number {
@@ -251,140 +325,152 @@ const schemas = [
   .areas__card-title {
     font-size: var(--text-xl);
     margin-top: var(--space-sm);
+    color: var(--white);
   }
 
   .areas__card-subtitle {
     font-style: italic;
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.5);
     font-size: var(--text-base);
     font-weight: 400;
   }
 
   .areas__card-desc {
     font-size: var(--text-sm);
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.5);
     margin-top: var(--space-sm);
-  }
-
-  /* ─── Paths Intro ─── */
-  .paths-intro {
-    padding-block: var(--space-5xl);
-    background-color: var(--white);
-  }
-
-  .paths-intro__grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: var(--space-3xl);
-    align-items: start;
-  }
-
-  .paths-intro__title {
-    font-size: var(--text-3xl);
-    margin-top: var(--space-md);
-    line-height: 1.2;
-  }
-
-  .paths-intro__text {
-    font-size: var(--text-base);
-    line-height: 1.8;
-    color: var(--grey);
-    margin-bottom: var(--space-lg);
-    max-width: none;
   }
 
   /* ─── Category sections ─── */
-  .category-section {
-    padding-block: var(--space-4xl);
+  .cat-section {
+    position: relative;
+    padding-block: var(--space-5xl);
   }
 
-  .category-section__header {
-    margin-bottom: var(--space-2xl);
+  .cat-section__intro {
+    margin-bottom: var(--space-4xl);
   }
 
-  .category-section__title {
-    font-size: var(--text-3xl);
-    margin-top: var(--space-sm);
-    margin-bottom: var(--space-sm);
+  .cat-section__subtitle {
+    font-size: var(--text-xl);
+    font-style: italic;
+    color: var(--grey);
+    margin-bottom: var(--space-md);
+    font-weight: 400;
+    max-width: none;
   }
 
-  .category-section__subtitle {
+  .cat-section__desc {
     font-size: var(--text-base);
     color: var(--grey);
-    max-width: 65ch;
+    line-height: 1.8;
+    max-width: 55ch;
   }
 
-  /* Paths accordion */
-  .paths-list {
+  .text-light {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .text-light-muted {
+    color: rgba(255, 255, 255, 0.55);
+  }
+
+  /* ─── Path cards grid ─── */
+  .cat-section__paths {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: var(--space-xl);
+  }
+
+  .path-card {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    padding: var(--space-2xl);
     display: flex;
     flex-direction: column;
-    margin-bottom: var(--space-2xl);
+    gap: var(--space-md);
+    border: 1px solid rgba(26, 26, 25, 0.06);
+    transition: box-shadow 0.3s, transform 0.3s;
   }
 
-  .path-item {
-    border-top: 1px solid rgba(26, 26, 25, 0.1);
+  .path-card:hover {
+    box-shadow: 0 8px 30px var(--shadow-md);
+    transform: translateY(-2px);
   }
 
-  .path-item:last-child {
-    border-bottom: 1px solid rgba(26, 26, 25, 0.1);
+  .path-card.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
   }
 
-  .path-item__summary {
+  .path-card.glass-card:hover {
+    border-color: var(--glass-hover-border);
+  }
+
+  .path-card.glass-card .path-card__number { color: rgba(255, 255, 255, 0.35); }
+  .path-card.glass-card .path-card__curator-name { color: var(--white); }
+  .path-card.glass-card .path-card__curator-role { color: rgba(255, 255, 255, 0.45); }
+  .path-card.glass-card .path-card__title { color: var(--white); }
+  .path-card.glass-card .path-card__desc { color: rgba(255, 255, 255, 0.65); }
+
+  .path-card__number {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--grey);
+    text-transform: uppercase;
+  }
+
+  .path-card__curator {
     display: flex;
     align-items: center;
-    gap: var(--space-xl);
-    padding: var(--space-lg) 0;
-    cursor: pointer;
-    list-style: none;
+    gap: var(--space-md);
   }
 
-  .path-item__summary::-webkit-details-marker {
-    display: none;
+  .path-card__avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: var(--radius-full);
+    background: var(--sand-light);
+    flex-shrink: 0;
+    object-fit: cover;
   }
 
-  .path-item__title {
-    font-size: var(--text-xl);
-    flex-grow: 1;
+  .path-card__curator-name {
+    font-size: var(--text-sm);
+    font-weight: 400;
   }
 
-  .path-item__curator {
+  .path-card__curator-role {
     font-size: var(--text-xs);
-    color: var(--grey);
     text-transform: uppercase;
     letter-spacing: 0.1em;
   }
 
-  .path-item__icon {
+  .path-card__title {
     font-size: var(--text-2xl);
-    font-weight: 300;
+    line-height: 1.2;
+  }
+
+  .path-card__desc {
+    font-size: var(--text-sm);
+    line-height: 1.7;
     color: var(--grey);
-    transition: transform 0.2s;
   }
 
-  .path-item[open] .path-item__icon {
-    transform: rotate(45deg);
+  .path-card__video {
+    margin-top: auto;
+    padding-top: var(--space-lg);
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--ink);
   }
 
-  .path-item__content {
-    padding-bottom: var(--space-xl);
-    max-width: 65ch;
-  }
-
-  .path-item__content p {
-    color: var(--grey);
-    line-height: 1.8;
-  }
-
-  .category-section__actions {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-lg);
-  }
-
-  .category-section__downloads {
-    display: flex;
-    gap: var(--space-md);
-    flex-wrap: wrap;
+  .path-card__video iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
   }
 
   /* ─── Metody ─── */
@@ -392,6 +478,8 @@ const schemas = [
     padding-block: var(--space-5xl);
     background-color: var(--deep);
     color: var(--white);
+    position: relative;
+    overflow: hidden;
   }
 
   .metody__header {
@@ -400,7 +488,6 @@ const schemas = [
 
   .metody__title {
     font-size: var(--text-4xl);
-    margin-top: var(--space-md);
   }
 
   .metody__intro {
@@ -419,13 +506,6 @@ const schemas = [
 
   .metody__card {
     padding: var(--space-xl);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-md);
-    transition: border-color 0.2s;
-  }
-
-  .metody__card:hover {
-    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .metody__card-title {
@@ -433,6 +513,7 @@ const schemas = [
     font-size: var(--text-lg);
     font-weight: 400;
     margin-bottom: var(--space-sm);
+    color: var(--white);
   }
 
   .metody__card-desc {
@@ -454,12 +535,21 @@ const schemas = [
     color: var(--sand);
   }
 
+  /* ─── CTA / Newsletter ─── */
+  .cta-wrap {
+    background-color: var(--white);
+    padding-top: var(--space-4xl);
+  }
+
+  .newsletter-wrap {
+    background-color: var(--cream);
+    padding-top: var(--space-4xl);
+  }
+
   /* ─── Responsive ─── */
   @media (max-width: 768px) {
-    .oferta-hero__grid,
-    .paths-intro__grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-lg);
+    .lab-hero__title {
+      font-size: var(--text-4xl);
     }
 
     .areas__grid,
@@ -467,17 +557,8 @@ const schemas = [
       grid-template-columns: 1fr;
     }
 
-    .path-item__summary {
-      flex-wrap: wrap;
-    }
-
-    .path-item__curator {
-      order: 3;
-      width: 100%;
-    }
-
-    .category-section__downloads {
-      flex-direction: column;
+    .cat-section__paths {
+      grid-template-columns: 1fr;
     }
   }
 </style>

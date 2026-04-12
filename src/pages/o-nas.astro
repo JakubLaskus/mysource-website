@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CornerBrackets from '../components/CornerBrackets.astro';
+import EditorialQuote from '../components/EditorialQuote.astro';
 import CTA from '../components/CTA.astro';
 import Newsletter from '../components/Newsletter.astro';
 import { radarExperts } from '../data/team';
@@ -68,7 +71,7 @@ const schemas = [
   <!-- ════════ HERO ════════ -->
   <section class="onas-hero">
     <div class="container container--wide">
-      <span class="label" style="color: var(--ember);" data-reveal="none">AI Readiness</span>
+      <SectionHeader label="AI Readiness" variant="light" />
       <h1 class="onas-hero__title" data-reveal-words data-reveal-delay="100">
         Dbamy o ludzki wymiar<br />transformacji technologicznej
       </h1>
@@ -86,7 +89,8 @@ const schemas = [
   <!-- ════════ RADAR INTRO ════════ -->
   <section class="radar" id="radar">
     <div class="container container--wide">
-      <div class="radar__grid">
+      <SectionHeader label="RADAR" number="01" variant="light" />
+      <div class="editorial-grid">
         <div class="radar__left" data-reveal="left">
           <span class="tag tag--ember">RADAR</span>
           <h2 class="radar__title">Technologia to nie wszystko</h2>
@@ -103,9 +107,11 @@ const schemas = [
   <!-- ════════ STATS ════════ -->
   <section class="stats-section">
     <div class="container container--wide">
+      <SectionHeader label="W liczbach" number="02" variant="dark" />
       <div class="stats__grid" data-reveal-stagger>
         {stats.map((stat) => (
-          <div class="stats__card" data-hover-lift>
+          <div class="glass-card stats__card" data-hover-lift>
+            <CornerBrackets />
             <span class="stats__number" data-reveal-counter={stat.number.replace('%', '')} data-counter-suffix="%">0</span>
             <p class="stats__label">{stat.label}</p>
             <p class="stats__detail">{stat.detail}</p>
@@ -124,13 +130,13 @@ const schemas = [
     </div>
   </section>
 
-  <!-- ════════ ZESPÓŁ ════════ -->
+  <!-- ════════ ZESPOL ════════ -->
   <section class="team" id="zespol">
     <div class="container container--wide">
+      <SectionHeader label="Zespol" number="03" variant="light" />
       <div class="team__header" data-reveal>
-        <span class="label">Zespół ekspercki</span>
         <p class="team__intro">
-          Za skutecznością narzędzia RADAR stoi interdyscyplinarny zespół ekspertów, który w ramach jednego spójnego procesu poddaje dane cross-perspektywicznej ocenie.
+          Za skutecznoscia narzedzia RADAR stoi interdyscyplinarny zespol ekspertow, ktory w ramach jednego spojnego procesu poddaje dane cross-perspektywicznej ocenie.
         </p>
       </div>
       <div class="team__grid" data-reveal-stagger>
@@ -148,16 +154,17 @@ const schemas = [
   <!-- ════════ WARSTWY ════════ -->
   <section class="layers" id="proces">
     <div class="container container--wide">
+      <SectionHeader label="4 warstwy RADAR" number="04" variant="dark" />
       <div class="layers__header" data-reveal>
-        <span class="label">Jak to działa?</span>
         <h2 class="layers__title">Cztery warstwy — jedna diagnoza</h2>
       </div>
       <p class="layers__intro">
-        Radar to proces badawczo-diagnostyczny oparty o ankiety, wywiady i warsztaty. Podzielony jest na 4 warstwy nietechnologicznego wpływu GenAI na organizację.
+        Radar to proces badawczo-diagnostyczny oparty o ankiety, wywiady i warsztaty. Podzielony jest na 4 warstwy nietechnologicznego wplywu GenAI na organizacje.
       </p>
       <div class="layers__grid" data-reveal-stagger>
         {radarLayers.map((layer) => (
-          <div class="layers__card" data-hover-lift>
+          <div class="glass-card layers__card" data-hover-lift>
+            <CornerBrackets />
             <span class="layers__card-id font-mono">{layer.id}</span>
             <h3 class="layers__card-title">{layer.title}</h3>
             <p class="layers__card-subtitle font-display">{layer.subtitle}</p>
@@ -175,9 +182,11 @@ const schemas = [
   <!-- ════════ REPORT CTA ════════ -->
   <section class="report-cta">
     <div class="container container--wide">
+      <SectionHeader label="Raport" number="05" variant="light" />
       <div class="report-cta__inner" data-reveal="left">
-        <p class="report-cta__label label" style="color: var(--ember);">Raport</p>
-        <p class="report-cta__text font-display">Insights 2026 — The Human Edge — dobrostan jako katalizator transformacji AI</p>
+        <EditorialQuote variant="light">
+          <p class="report-cta__text font-display">Insights 2026 — The Human Edge — dobrostan jako katalizator transformacji AI</p>
+        </EditorialQuote>
         <a href="#" class="btn btn--primary">
           Pobierz raport
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -187,10 +196,20 @@ const schemas = [
   </section>
 
   <!-- ════════ CTA ════════ -->
-  <CTA variant="dark" />
+  <section class="cta-wrap">
+    <div class="container container--wide">
+      <SectionHeader label="Kontakt" number="06" variant="light" />
+    </div>
+    <CTA variant="dark" />
+  </section>
 
   <!-- ════════ NEWSLETTER ════════ -->
-  <Newsletter variant="deep" />
+  <section class="newsletter-wrap">
+    <div class="container container--wide">
+      <SectionHeader label="Newsletter" number="07" variant="dark" />
+    </div>
+    <Newsletter variant="deep" />
+  </section>
 </BaseLayout>
 
 <style>
@@ -202,13 +221,12 @@ const schemas = [
   }
 
   .onas-hero__title {
-    font-size: var(--text-5xl);
+    font-size: var(--text-6xl);
     font-family: var(--font-display-light);
-    font-weight: 400;
-    letter-spacing: -0.03em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
     line-height: 1.05;
     max-width: 18ch;
-    margin-top: var(--space-md);
     margin-bottom: var(--space-3xl);
   }
 
@@ -234,14 +252,7 @@ const schemas = [
   /* ─── RADAR ─── */
   .radar {
     padding-block: var(--space-5xl);
-    background-color: var(--sage-light);
-  }
-
-  .radar__grid {
-    display: grid;
-    grid-template-columns: 5fr 7fr;
-    gap: var(--space-3xl);
-    align-items: start;
+    background-color: var(--cream);
   }
 
   .radar__title {
@@ -274,13 +285,15 @@ const schemas = [
   }
 
   .stats__card {
+    position: relative;
     text-align: left;
+    padding: var(--space-xl);
   }
 
   .stats__number {
     font-family: var(--font-display);
     font-size: var(--text-5xl);
-    font-weight: 400;
+    font-weight: 600;
     color: var(--ember);
     display: block;
     line-height: 1;
@@ -328,7 +341,7 @@ const schemas = [
   /* ─── Team ─── */
   .team {
     padding-block: var(--space-5xl);
-    background-color: var(--cream);
+    background-color: var(--white);
   }
 
   .team__header {
@@ -340,7 +353,6 @@ const schemas = [
     line-height: 1.8;
     color: var(--grey);
     max-width: 55ch;
-    margin-top: var(--space-md);
   }
 
   .team__grid {
@@ -357,7 +369,7 @@ const schemas = [
     width: 140px;
     height: 140px;
     border-radius: var(--radius-full);
-    background: var(--white);
+    background: var(--cream);
     margin-bottom: var(--space-md);
     object-fit: cover;
   }
@@ -376,7 +388,8 @@ const schemas = [
   /* ─── Layers ─── */
   .layers {
     padding-block: var(--space-5xl);
-    background-color: var(--white);
+    background-color: var(--deep);
+    color: var(--white);
   }
 
   .layers__header {
@@ -385,14 +398,13 @@ const schemas = [
 
   .layers__title {
     font-size: var(--text-3xl);
-    margin-top: var(--space-md);
     line-height: 1.2;
   }
 
   .layers__intro {
     font-size: var(--text-lg);
     line-height: 1.8;
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.6);
     max-width: 60ch;
     margin-bottom: var(--space-4xl);
   }
@@ -404,9 +416,8 @@ const schemas = [
   }
 
   .layers__card {
+    position: relative;
     padding: var(--space-xl);
-    background: var(--cream);
-    border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
     gap: var(--space-sm);
@@ -422,11 +433,12 @@ const schemas = [
 
   .layers__card-title {
     font-size: var(--text-xl);
+    color: var(--white);
   }
 
   .layers__card-subtitle {
     font-size: var(--text-sm);
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.5);
     font-style: italic;
     font-weight: 400;
   }
@@ -436,19 +448,19 @@ const schemas = [
     flex-direction: column;
     gap: var(--space-xs);
     font-size: var(--text-sm);
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.6);
     margin-top: var(--space-sm);
   }
 
   .layers__card-items li::before {
-    content: '· ';
+    content: '\00B7\00A0';
     color: var(--ember);
   }
 
   /* ─── Report CTA ─── */
   .report-cta {
-    padding-block: var(--space-4xl);
-    background-color: var(--ember-light);
+    padding-block: var(--space-5xl);
+    background-color: var(--cream);
   }
 
   .report-cta__inner {
@@ -459,17 +471,37 @@ const schemas = [
     font-size: var(--text-2xl);
     font-weight: 400;
     line-height: 1.4;
-    margin-top: var(--space-md);
     margin-bottom: var(--space-xl);
     max-width: none;
   }
 
+  /* ─── CTA / Newsletter wrappers ─── */
+  .cta-wrap {
+    padding-top: var(--space-3xl);
+  }
+
+  .cta-wrap :global(.section) {
+    padding-top: 0;
+  }
+
+  .newsletter-wrap {
+    padding-top: var(--space-3xl);
+    background-color: var(--deep);
+  }
+
+  .newsletter-wrap :global(.section) {
+    padding-top: 0;
+  }
+
   /* ─── Responsive ─── */
   @media (max-width: 768px) {
-    .onas-hero__grid,
-    .radar__grid {
+    .onas-hero__grid {
       grid-template-columns: 1fr;
       gap: var(--space-lg);
+    }
+
+    .onas-hero__title {
+      font-size: var(--text-4xl);
     }
 
     .stats__grid,
