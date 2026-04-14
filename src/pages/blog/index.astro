@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
@@ -24,31 +23,26 @@ const schemas = [
   description="Artykuły, analizy i refleksje o transformacji organizacyjnej, AI readiness, wellbeingu i przywództwie w erze zmian technologicznych."
   schemas={schemas}
 >
-  <!-- ════════ HERO ════════ -->
-  <section class="blog-hero">
-    <div class="container container--wide">
-      <SectionHeader label="Insights" variant="light" />
-      <h1 class="blog-hero__title" data-reveal-words data-reveal-delay="100">
-        Myśli o transformacji, technologii i ludziach
-      </h1>
-      <p class="blog-hero__desc" data-reveal data-reveal-delay="250">
+  <section class="section blog-hero">
+    <div class="container">
+      <p class="uppercase font-mono text-muted">Insights</p>
+      <h1>Myśli o transformacji, technologii i ludziach</h1>
+      <p class="blog-hero__desc">
         Dzielimy się wiedzą, obserwacjami i narzędziami, które pomagają organizacjom nawigować w świecie zmian.
       </p>
     </div>
   </section>
 
-  <!-- ════════ POSTS ════════ -->
-  <section class="blog-posts">
-    <div class="container container--wide">
-      <SectionHeader label="Artykuły" number="01" variant="dark" />
+  <section class="section">
+    <div class="container">
       {posts.length === 0 ? (
-        <div class="blog-empty glass-card">
-          <p>Wkrótce pojawią się tutaj artykuły. Zapisz się do newslettera, aby nie przegapić pierwszych publikacji.</p>
+        <div class="blog-empty">
+          <p class="text-muted">Wkrótce pojawią się tutaj artykuły. Zapisz się do newslettera, aby nie przegapić pierwszych publikacji.</p>
         </div>
       ) : (
         <div class="blog-grid">
           {posts.map((post) => (
-            <article class="blog-card glass-card" data-reveal>
+            <article class="blog-card card">
               {post.data.coverImage && (
                 <img
                   src={post.data.coverImage}
@@ -70,8 +64,8 @@ const schemas = [
                 <h2 class="blog-card__title">
                   <a href={`/blog/${post.id}`}>{post.data.title}</a>
                 </h2>
-                <p class="blog-card__excerpt">{post.data.excerpt}</p>
-                <time class="blog-card__date font-mono" datetime={post.data.date}>
+                <p class="blog-card__excerpt text-muted">{post.data.excerpt}</p>
+                <time class="blog-card__date font-mono text-muted" datetime={post.data.date}>
                   {new Date(post.data.date).toLocaleDateString('pl-PL', { year: 'numeric', month: 'long', day: 'numeric' })}
                 </time>
               </div>
@@ -84,54 +78,34 @@ const schemas = [
 </BaseLayout>
 
 <style>
-  /* ─── Hero ─── */
   .blog-hero {
-    padding-top: var(--space-5xl);
-    padding-bottom: var(--space-4xl);
-    background-color: var(--cream);
+    padding-block: var(--space-5xl) var(--space-2xl);
   }
 
-  .blog-hero__title {
-    font-size: var(--text-6xl);
-    font-family: var(--font-display-light);
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    line-height: 1.0;
+  .blog-hero h1 {
+    font-size: var(--text-4xl);
     max-width: 18ch;
-    margin-bottom: var(--space-xl);
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-lg);
   }
 
   .blog-hero__desc {
-    font-size: var(--text-xl);
+    font-size: var(--text-lg);
     color: var(--grey);
     max-width: 55ch;
-    line-height: 1.6;
-  }
-
-  /* ─── Posts (dark) ─── */
-  .blog-posts {
-    padding-block: var(--space-5xl);
-    background-color: var(--deep);
-    color: var(--white);
   }
 
   .blog-empty {
     padding: var(--space-4xl);
     text-align: center;
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.5);
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
+    background: var(--grey-light);
+    border-radius: var(--radius-md);
   }
 
   .blog-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--space-xl);
-    margin-top: var(--space-3xl);
   }
 
   .blog-card {
@@ -157,37 +131,22 @@ const schemas = [
     gap: var(--space-sm);
   }
 
-  .blog-card .tag {
-    background: rgba(255, 255, 255, 0.08);
-    color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
   .blog-card__title {
     font-size: var(--text-xl);
-    color: var(--white);
-  }
-
-  .blog-card__title a {
-    color: var(--white);
   }
 
   .blog-card__title a:hover {
-    color: var(--sand);
+    color: var(--black-hover);
   }
 
   .blog-card__excerpt {
     font-size: var(--text-sm);
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.5);
   }
 
   .blog-card__date {
     font-size: var(--text-xs);
     margin-top: var(--space-sm);
-    color: rgba(255, 255, 255, 0.35);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
   }
 
   @media (max-width: 768px) {

@@ -39,10 +39,10 @@
   --lavender: var(--mist);
   --lavender-light: var(--mist-light);
 
-  /* Typography — Adobe Typekit + Google Fonts + System */
+  /* Typography — Adobe Typekit + Google Fonts */
   --font-body: degular-text, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display-light: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: nocturne-serif, Georgia, 'Times New Roman', serif;
+  --font-display-light: nocturne-serif-lights, Georgia, 'Times New Roman', serif;
   --font-mono: 'Inconsolata', 'Courier New', monospace;
 
   /* Font sizes — fluid clamp() like infuture.institute */
@@ -56,7 +56,6 @@
   --text-4xl: clamp(2.25rem, 2.5vw + 1.2rem, 3.5rem);
   --text-5xl: clamp(2.75rem, 4vw + 1rem, 5.5rem);
   --text-6xl: clamp(3.5rem, 6vw + 1rem, 8rem);
-  --text-7xl: clamp(4.5rem, 8vw + 1rem, 11rem);
 
   /* Spacing — dramatycznie więcej oddechu */
   --space-xs: 0.25rem;
@@ -80,18 +79,6 @@
   --radius-lg: 24px;
   --radius-pill: 100px;
   --radius-full: 50%;
-
-  /* Editorial system */
-  --max-width-editorial: 1600px;
-  --section-rule-color: rgba(26, 26, 25, 0.15);
-  --section-rule-color-light: rgba(255, 255, 255, 0.15);
-  --bracket-size: clamp(16px, 1.5vw, 28px);
-  --bracket-stroke: 1px;
-  --bracket-color: rgba(255, 255, 255, 0.35);
-  --bracket-inset: clamp(0.75rem, 1.5vw, 1.5rem);
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-hover-border: rgba(255, 255, 255, 0.18);
 }
 
 /* --- Reset & Base --- */
@@ -154,40 +141,40 @@ select {
 /* --- Typography --- */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  line-height: 1.05;
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
 h1 {
   font-family: var(--font-display-light);
-  font-size: var(--text-6xl);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: var(--text-5xl);
+  font-weight: 400;
+  letter-spacing: -0.03em;
 }
 
 h2 {
   font-size: var(--text-4xl);
-  font-weight: 600;
+  font-weight: 400;              /* nocturne-serif ma tylko 400 */
 }
 
 h3 {
   font-size: var(--text-3xl);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 h4 {
   font-size: var(--text-2xl);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 h5 {
   font-size: var(--text-xl);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 h6 {
   font-size: var(--text-lg);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 p {
@@ -241,10 +228,6 @@ p {
   max-width: var(--max-width-wide);
 }
 
-.container--editorial {
-  max-width: var(--max-width-editorial);
-}
-
 .section {
   padding-block: var(--space-4xl);
 }
@@ -284,51 +267,6 @@ p {
 
 .section--grey {
   background-color: var(--grey-light);
-}
-
-/* Editorial layout */
-.editorial-grid {
-  display: grid;
-  grid-template-columns: minmax(120px, 2fr) 10fr;
-  gap: var(--space-3xl);
-  align-items: start;
-}
-
-@media (max-width: 768px) {
-  .editorial-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-
-  .editorial-grid > :first-child:empty {
-    display: none;
-  }
-}
-
-.section--photo {
-  position: relative;
-  overflow: hidden;
-}
-
-.section--photo__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(10, 22, 40, 0.4), rgba(10, 22, 40, 0.75));
-  z-index: 1;
-}
-
-/* Glass-morphism cards */
-.glass-card {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-md);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  transition: border-color 0.3s;
-}
-
-.glass-card:hover {
-  border-color: var(--glass-hover-border);
 }
 
 /* Legacy section aliases */

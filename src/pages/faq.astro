@@ -2,7 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Newsletter from '../components/Newsletter.astro';
-import SectionHeader from '../components/SectionHeader.astro';
 
 const faqs = [
   {
@@ -94,7 +93,7 @@ const schemas = [
   <!-- ════════ HERO ════════ -->
   <section class="faq-hero">
     <div class="container container--wide">
-      <SectionHeader label="Pomoc" variant="light" />
+      <span class="label" data-reveal="none">Pomoc</span>
       <h1 class="faq-hero__title" data-reveal-words data-reveal-delay="100">
         Najczęściej zadawane pytania
       </h1>
@@ -104,7 +103,6 @@ const schemas = [
   <!-- ════════ FAQ ════════ -->
   <section class="faq-section">
     <div class="container container--wide">
-      <SectionHeader label="FAQ" number="01" variant="dark" />
       <div class="faq__list">
         {faqs.map((faq, i) => (
           <details class="faq__item" data-reveal data-reveal-delay={String(i * 50)}>
@@ -122,24 +120,13 @@ const schemas = [
   </section>
 
   <!-- ════════ CTA ════════ -->
-  <section class="faq-cta">
-    <div class="container container--wide">
-      <SectionHeader label="Kontakt" number="02" variant="light" />
-    </div>
-    <CTA variant="cream" />
-  </section>
+  <CTA variant="cream" />
 
   <!-- ════════ NEWSLETTER ════════ -->
-  <section class="faq-newsletter">
-    <div class="container container--wide">
-      <SectionHeader label="Newsletter" number="03" variant="light" />
-    </div>
-    <Newsletter variant="sand" />
-  </section>
+  <Newsletter variant="sand" />
 </BaseLayout>
 
 <style>
-  /* ─── Hero ─── */
   .faq-hero {
     padding-top: var(--space-5xl);
     padding-bottom: var(--space-4xl);
@@ -147,29 +134,21 @@ const schemas = [
   }
 
   .faq-hero__title {
-    font-size: var(--text-6xl);
+    font-size: var(--text-5xl);
     font-family: var(--font-display-light);
-    font-weight: 600;
-    letter-spacing: -0.04em;
-    line-height: 1.0;
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
     max-width: 16ch;
-    margin-bottom: var(--space-xl);
   }
 
-  /* ─── FAQ (dark) ─── */
-  .faq-section {
-    padding-block: var(--space-5xl);
-    background-color: var(--deep);
-    color: var(--white);
-  }
-
+  /* ─── FAQ list ─── */
   .faq__list {
     max-width: 800px;
-    margin-top: var(--space-2xl);
   }
 
   .faq__item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid var(--sand);
     padding: var(--space-lg) 0;
   }
 
@@ -189,15 +168,14 @@ const schemas = [
   .faq__question-text {
     font-family: var(--font-display);
     font-size: var(--text-xl);
-    font-weight: 500;
+    font-weight: 400;
     line-height: 1.3;
-    color: var(--white);
   }
 
   .faq__icon {
     font-size: var(--text-2xl);
     font-weight: 300;
-    color: rgba(255, 255, 255, 0.4);
+    color: var(--grey);
     flex-shrink: 0;
     transition: transform 0.3s ease;
   }
@@ -209,21 +187,9 @@ const schemas = [
   .faq__answer {
     padding-top: var(--space-md);
     padding-right: var(--space-3xl);
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--grey);
     line-height: 1.8;
     font-size: var(--text-base);
-  }
-
-  /* ─── CTA ─── */
-  .faq-cta {
-    background-color: var(--cream);
-    padding-top: var(--space-4xl);
-  }
-
-  /* ─── Newsletter ─── */
-  .faq-newsletter {
-    background-color: var(--sand-light);
-    padding-top: var(--space-4xl);
   }
 
   @media (max-width: 768px) {
