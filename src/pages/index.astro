@@ -87,55 +87,51 @@ const schemas = [
         <h2 class="services__title" data-reveal-words data-reveal-delay="100">Dwa obszary. Jeden cel.</h2>
       </div>
 
-      <!-- LAB -->
-      <a href="/oferta" class="services__row" data-reveal>
-        <div class="services__row-side">
-          <span class="services__num">01</span>
+      <div class="services__grid">
+        <!-- LAB -->
+        <a href="/oferta" class="services__row" data-reveal>
           <span class="services__tag label">LAB</span>
-        </div>
-        <div class="services__row-main">
-          <h3 class="services__row-title">
-            <span class="services__row-kicker">Szkolenia i warsztaty</span>
-            dla pracowników i&nbsp;liderów
-          </h3>
-          <p class="services__row-desc">
-            Stawiamy człowieka w centrum organizacji. Trzy kluczowe obszary: wellbeing, transformacja technologiczna i&nbsp;przywództwo.
-          </p>
-          <ul class="services__chips">
-            <li>Wellbeing</li>
-            <li>Transformacja</li>
-            <li>Liderzy</li>
-          </ul>
-        </div>
-        <span class="services__arrow" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </span>
-      </a>
+          <div class="services__row-main">
+            <h3 class="services__row-title">
+              <span class="services__row-kicker">Szkolenia i warsztaty</span>
+              dla pracowników i&nbsp;liderów
+            </h3>
+            <p class="services__row-desc">
+              Stawiamy człowieka w centrum organizacji. Trzy kluczowe obszary: wellbeing, transformacja technologiczna i&nbsp;przywództwo.
+            </p>
+            <ul class="services__chips">
+              <li>Wellbeing</li>
+              <li>Transformacja</li>
+              <li>Liderzy</li>
+            </ul>
+          </div>
+          <span class="services__arrow" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
 
-      <!-- AI READINESS -->
-      <a href="/o-nas" class="services__row services__row--alt" data-reveal>
-        <div class="services__row-side">
-          <span class="services__num">02</span>
+        <!-- AI READINESS -->
+        <a href="/o-nas" class="services__row services__row--alt" data-reveal>
           <span class="services__tag label">AI Readiness</span>
-        </div>
-        <div class="services__row-main">
-          <h3 class="services__row-title">
-            <span class="services__row-kicker">Diagnostyka</span>
-            transformacji AI
-          </h3>
-          <p class="services__row-desc">
-            RADAR — narzędzie badające gotowość organizacji do&nbsp;transformacji AI z&nbsp;perspektywy ludzi, zespołów i&nbsp;kultury.
-          </p>
-          <ul class="services__chips">
-            <li>RADAR</li>
-            <li>Human Readiness</li>
-            <li>HAIRI Index</li>
-          </ul>
-        </div>
-        <span class="services__arrow" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-        </span>
-      </a>
+          <div class="services__row-main">
+            <h3 class="services__row-title">
+              <span class="services__row-kicker">Diagnostyka</span>
+              transformacji AI
+            </h3>
+            <p class="services__row-desc">
+              RADAR — narzędzie badające gotowość organizacji do&nbsp;transformacji AI z&nbsp;perspektywy ludzi, zespołów i&nbsp;kultury.
+            </p>
+            <ul class="services__chips">
+              <li>RADAR</li>
+              <li>Human Readiness</li>
+              <li>HAIRI Index</li>
+            </ul>
+          </div>
+          <span class="services__arrow" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -342,48 +338,32 @@ const schemas = [
     line-height: 1.15;
   }
 
-  /* Editorial row layout — alternating, huge number accent */
-  .services__row {
+  /* Editorial 2-column layout */
+  .services__grid {
     display: grid;
-    grid-template-columns: minmax(140px, 1fr) 7fr auto;
-    gap: clamp(1.5rem, 4vw, 4rem);
-    align-items: start;
-    padding-block: clamp(2.5rem, 5vw, 4rem);
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 4vw, 4rem);
     border-top: 1px solid rgba(26, 26, 25, 0.12);
+    border-bottom: 1px solid rgba(26, 26, 25, 0.12);
+  }
+
+  .services__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    padding-block: clamp(2.5rem, 5vw, 4rem);
     color: var(--ink);
     transition: background-color 0.3s ease;
     position: relative;
   }
 
-  .services__row:last-child {
-    border-bottom: 1px solid rgba(26, 26, 25, 0.12);
+  .services__row + .services__row {
+    border-left: 1px solid rgba(26, 26, 25, 0.12);
+    padding-left: clamp(2rem, 4vw, 4rem);
   }
 
   .services__row:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-
-  .services__row--alt {
     color: var(--ink);
-  }
-
-  .services__row-side {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-  }
-
-  .services__num {
-    font-family: var(--font-display-light);
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    font-weight: 400;
-    line-height: 0.9;
-    letter-spacing: -0.03em;
-    color: var(--sand);
-  }
-
-  .services__row--alt .services__num {
-    color: var(--ember-light);
   }
 
   .services__tag {
@@ -648,13 +628,15 @@ const schemas = [
       gap: var(--space-lg);
     }
 
-    .services__row {
+    .services__grid {
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
     }
 
-    .services__arrow {
-      align-self: flex-start;
+    .services__row + .services__row {
+      border-left: 0;
+      border-top: 1px solid rgba(26, 26, 25, 0.12);
+      padding-left: 0;
+      padding-top: clamp(2rem, 5vw, 3rem);
     }
 
     .services__row-title {
