@@ -388,7 +388,7 @@ const schemas = [
   .statement__quote {
     position: relative;
     margin: 0;
-    min-height: clamp(260px, 40vh, 420px);
+    min-height: clamp(360px, 55vh, 580px);
     overflow: hidden;
     background-color: var(--cream);
   }
@@ -397,13 +397,17 @@ const schemas = [
     position: absolute;
     inset: 0;
     overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 
   .statement__portrait img {
-    width: 100%;
+    width: auto;
     height: 100%;
-    object-fit: cover;
-    object-position: center 20%;
+    max-width: 55%;
+    object-fit: contain;
+    object-position: left bottom;
     display: block;
   }
 
