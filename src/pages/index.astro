@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTA from '../components/CTA.astro';
 import Newsletter from '../components/Newsletter.astro';
+import ReportBanner from '../components/ReportBanner.astro';
 import { founders } from '../data/team';
 
 const schemas = [
@@ -33,15 +34,18 @@ const schemas = [
   description="Przygotowujemy organizacje na przyszłość poprzez budowanie ludzkiej gotowości: fizycznej, psychicznej i poznawczej. Szkolenia, diagnostyka AI RADAR, programy wellbeingowe."
   schemas={schemas}
 >
+  <!-- ════════ REPORT BANNER ════════ -->
+  <ReportBanner />
+
   <!-- ════════ HERO ════════ -->
   <section class="hero">
     <div class="container container--wide">
       <span class="hero__label label" data-reveal="none">mysource</span>
       <h1 class="hero__title" data-reveal-words data-reveal-delay="100">
-        Ludzki wymiar transformacji technologicznej
+        Przygotowujemy organizacje na przyszłość poprzez budowanie ludzkiej gotowości: fizycznej, psychicznej i poznawczej
       </h1>
       <p class="hero__lead" data-reveal data-reveal-delay="400">
-        Przygotowujemy organizacje na przyszłość poprzez budowanie ludzkiej gotowości — fizycznej, psychicznej i poznawczej.
+        Ludzki wymiar transformacji technologicznej.
       </p>
       <div class="hero__scroll-hint scroll-indicator" data-reveal="none" data-reveal-delay="800">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>

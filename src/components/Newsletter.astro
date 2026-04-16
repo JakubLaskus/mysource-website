@@ -25,10 +25,12 @@ const isDark = variant === 'deep';
       <label class="newsletter__consent">
         <input type="checkbox" name="gdpr" required />
         <span>
-          Wyrażam zgodę na przetwarzanie moich danych osobowych w celach marketingowych zgodnie z
-          <a href="/polityka-prywatnosci">polityką prywatności</a>.
+          Wyrażam zgodę na przetwarzanie moich danych osobowych przez Mysource w celu kontaktu oraz otrzymywania informacji marketingowych i sprzedażowych, w tym newslettera, za pośrednictwem środków komunikacji elektronicznej, zgodnie z obowiązującymi przepisami o ochronie danych osobowych. Zgoda jest dobrowolna i może zostać cofnięta w dowolnym momencie.
         </span>
       </label>
+      <p class="newsletter__disclaimer">
+        Klikając powyższy przycisk wyrażasz zgodę na przetwarzanie swoich danych osobowych oraz oświadczasz, że zapoznałaś/eś się z naszą <a href="/polityka-prywatnosci">Polityką Prywatności</a>. Administratorem danych osobowych jest Studio Bites spółka z ograniczoną odpowiedzialnością z siedzibą w Warszawie (KRS: 0000847684).
+      </p>
       <button type="submit" class:list={['btn', isDark ? 'btn--primary' : 'btn--dark']}>Zapisz się</button>
     </form>
   </div>
@@ -82,6 +84,22 @@ const isDark = variant === 'deep';
   }
 
   .newsletter__consent a {
+    text-decoration: underline;
+  }
+
+  .newsletter__disclaimer {
+    font-size: var(--text-xs);
+    color: var(--grey);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    max-width: none;
+  }
+
+  .section--deep .newsletter__disclaimer {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .newsletter__disclaimer a {
     text-decoration: underline;
   }
 

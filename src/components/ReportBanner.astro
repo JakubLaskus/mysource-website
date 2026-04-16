@@ -1,0 +1,107 @@
+---
+interface Props {
+  text?: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const {
+  text = 'Nowy raport: Jak ludzie postrzegają transformację AI w polskich organizacjach',
+  ctaText = 'Pobierz raport',
+  ctaHref = '/raport',
+} = Astro.props;
+
+// Repeat text 4x for seamless infinite scroll
+const marqueeItems = Array.from({ length: 6 }, (_, i) => i);
+---
+
+<aside class="report-banner" role="complementary" aria-label="Raport Mysource">
+  <div class="report-banner__marquee">
+    <div class="report-banner__track">
+      {marqueeItems.map(() => (
+        <span class="report-banner__item">
+          <span class="report-banner__dot" aria-hidden="true">●</span>
+          <span class="report-banner__text">{text}</span>
+          <a href={ctaHref} class="report-banner__cta">{ctaText} →</a>
+        </span>
+      ))}
+    </div>
+  </div>
+</aside>
+
+<style>
+  .report-banner {
+    background-color: var(--ink);
+    color: var(--white);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .report-banner__marquee {
+    display: flex;
+    overflow: hidden;
+    padding-block: 0.75rem;
+    position: relative;
+  }
+
+  .report-banner__track {
+    display: flex;
+    flex-shrink: 0;
+    gap: 2.5rem;
+    white-space: nowrap;
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .report-banner:hover .report-banner__track {
+    animation-play-state: paused;
+  }
+
+  .report-banner__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: var(--text-sm);
+    letter-spacing: 0.02em;
+  }
+
+  .report-banner__dot {
+    color: var(--ember);
+    font-size: 0.75em;
+  }
+
+  .report-banner__text {
+    font-family: var(--font-body);
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .report-banner__cta {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    color: var(--ember);
+    transition: color 0.2s;
+  }
+
+  .report-banner__cta:hover {
+    color: var(--white);
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .report-banner__track {
+      animation: none;
+      padding-inline: var(--content-padding);
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import ReportBanner from '../../components/ReportBanner.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog'))
@@ -23,6 +24,8 @@ const schemas = [
   description="Artykuły, analizy i refleksje o transformacji organizacyjnej, AI readiness, wellbeingu i przywództwie w erze zmian technologicznych."
   schemas={schemas}
 >
+  <ReportBanner />
+
   <section class="section blog-hero">
     <div class="container">
       <p class="uppercase font-mono text-muted">Insights</p>
