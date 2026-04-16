@@ -5,19 +5,27 @@ const navColumns = [
   {
     title: 'Oferta',
     links: [
-      { label: 'LAB / Szkolenia', href: '/oferta' },
+      { label: 'LAB', href: '/oferta' },
+      { label: 'Ścieżki', href: '/sciezki' },
       { label: 'AI Readiness', href: '/o-nas' },
-      { label: 'Insights', href: '/blog' },
       { label: 'Studio', href: '/studio' },
     ],
   },
   {
     title: 'Firma',
     links: [
-      { label: 'Partnerzy', href: '/#partnerzy' },
       { label: 'O nas', href: '/o-nas' },
+      { label: 'Partnerzy', href: '/#partnerzy' },
+      { label: 'Insights', href: '/blog' },
+      { label: 'Think Tank', href: '/blog' },
+    ],
+  },
+  {
+    title: 'Wsparcie',
+    links: [
       { label: 'FAQ', href: '/faq' },
       { label: 'Kontakt', href: '/kontakt' },
+      { label: 'Polityka prywatności', href: '/polityka-prywatnosci' },
     ],
   },
 ];
@@ -59,7 +67,7 @@ const navColumns = [
 <style>
   .footer__grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: var(--space-3xl);
     padding-bottom: var(--space-3xl);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);

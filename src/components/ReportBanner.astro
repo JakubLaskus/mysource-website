@@ -31,25 +31,25 @@ const marqueeItems = Array.from({ length: 6 }, (_, i) => i);
 
 <style>
   .report-banner {
-    background-color: var(--ink);
-    color: var(--white);
+    background-color: var(--sand-light);
+    color: var(--ink);
     overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(26, 26, 25, 0.08);
   }
 
   .report-banner__marquee {
     display: flex;
     overflow: hidden;
-    padding-block: 0.75rem;
+    padding-block: 0.7rem;
     position: relative;
   }
 
   .report-banner__track {
     display: flex;
     flex-shrink: 0;
-    gap: 2.5rem;
+    gap: 3rem;
     white-space: nowrap;
-    animation: marquee 40s linear infinite;
+    animation: marquee 50s linear infinite;
     will-change: transform;
   }
 
@@ -62,31 +62,34 @@ const marqueeItems = Array.from({ length: 6 }, (_, i) => i);
     align-items: center;
     gap: 1rem;
     font-size: var(--text-sm);
-    letter-spacing: 0.02em;
+    letter-spacing: 0.01em;
   }
 
   .report-banner__dot {
     color: var(--ember);
-    font-size: 0.75em;
+    font-size: 0.6em;
   }
 
   .report-banner__text {
-    font-family: var(--font-body);
-    color: rgba(255, 255, 255, 0.9);
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink);
+    font-size: var(--text-base);
   }
 
   .report-banner__cta {
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.15em;
     font-weight: 700;
     color: var(--ember);
     transition: color 0.2s;
+    white-space: nowrap;
   }
 
   .report-banner__cta:hover {
-    color: var(--white);
+    color: var(--ink);
   }
 
   @keyframes marquee {
