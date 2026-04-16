@@ -80,6 +80,20 @@ const schemas = [
     </div>
   </section>
 
+  <!-- ════════ VIDEO O ŚCIEŻKACH ════════ -->
+  <section class="paths-video">
+    <div class="container container--wide">
+      <div class="paths-video__wrap" data-reveal>
+        <video autoplay muted loop playsinline poster="/images/photos/team-photo.jpg">
+          <source src="https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b%2F67990882d7c8380f977ff66c_20250301_MY%20SOURCE_TRAILER_Master_v2_small_KRL_15-transcode.mp4" type="video/mp4" />
+        </video>
+        <div class="paths-video__caption">
+          <span class="label">Poznaj nasze ścieżki</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ════════ ŚCIEŻKI INTRO ════════ -->
   <section class="paths-intro" id="sciezki">
     <div class="container container--wide">
@@ -264,6 +278,38 @@ const schemas = [
     font-size: var(--text-sm);
     color: var(--grey);
     margin-top: var(--space-sm);
+  }
+
+  /* ─── Paths Video ─── */
+  .paths-video {
+    padding-block: var(--space-4xl);
+    background-color: var(--cream);
+  }
+
+  .paths-video__wrap {
+    position: relative;
+    aspect-ratio: 21 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--ink);
+  }
+
+  .paths-video__wrap video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .paths-video__caption {
+    position: absolute;
+    left: var(--space-xl);
+    bottom: var(--space-xl);
+    color: var(--white);
+    background: rgba(10, 22, 40, 0.6);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-pill);
+    backdrop-filter: blur(8px);
   }
 
   /* ─── Paths Intro ─── */
