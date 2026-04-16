@@ -397,17 +397,19 @@ const schemas = [
   }
 
   .statement__portrait {
+    position: relative;
     overflow: hidden;
     background-color: var(--deep-light);
   }
 
   .statement__portrait img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center 25%;
     display: block;
-    filter: grayscale(100%);
   }
 
   .statement__body {
