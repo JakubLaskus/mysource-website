@@ -71,7 +71,7 @@
   /* Layout */
   --max-width: 1200px;
   --max-width-wide: 1400px;
-  --content-padding: clamp(1rem, 1.5vw, 1.75rem);
+  --content-padding: clamp(1.125rem, 2.25vw, 2.375rem);
 
   /* Borders */
   --radius-sm: 4px;
