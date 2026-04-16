@@ -132,9 +132,21 @@ const schemas = [
   <!-- ════════ STATEMENT (dark) ════════ -->
   <section class="statement">
     <div class="container container--wide">
-      <h2 class="statement__text" data-reveal-words>
-        Transformacja technologiczna zaczyna się od ludzi.
-      </h2>
+      <figure class="statement__quote">
+        <div class="statement__portrait" data-reveal="left">
+          <img src="/images/team/gosia.jpg" alt="Gosia — Mysource" loading="lazy" width="320" height="400" />
+        </div>
+        <div class="statement__body">
+          <span class="statement__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="statement__text" data-reveal-words>
+            Transformacja technologiczna zaczyna się od ludzi.
+          </blockquote>
+          <figcaption class="statement__attribution" data-reveal data-reveal-delay="400">
+            <span class="statement__name">Gosia</span>
+            <span class="statement__role font-mono">Mysource</span>
+          </figcaption>
+        </div>
+      </figure>
     </div>
   </section>
 
@@ -382,6 +394,45 @@ const schemas = [
     background-color: var(--deep);
   }
 
+  .statement__quote {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: var(--space-4xl);
+    align-items: center;
+    margin: 0;
+  }
+
+  .statement__portrait {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius-md, 12px);
+    background-color: var(--deep-light);
+  }
+
+  .statement__portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .statement__body {
+    position: relative;
+    padding-left: var(--space-xl);
+  }
+
+  .statement__mark {
+    position: absolute;
+    top: -0.3em;
+    left: -0.1em;
+    font-family: var(--font-display);
+    font-size: clamp(6rem, 10vw, 10rem);
+    line-height: 1;
+    color: var(--ember);
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
   .statement__text {
     font-family: var(--font-body);
     font-size: var(--text-4xl);
@@ -390,9 +441,46 @@ const schemas = [
     line-height: 1.15;
     color: var(--white);
     max-width: 22ch;
-    margin-inline: auto;
     text-transform: uppercase;
-    text-align: center;
+    margin: 0 0 var(--space-xl) 0;
+  }
+
+  .statement__attribution {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding-left: var(--space-md);
+    border-left: 2px solid var(--ember);
+  }
+
+  .statement__name {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--white);
+  }
+
+  .statement__role {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .statement__quote {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+    .statement__portrait {
+      max-width: 280px;
+    }
+    .statement__body {
+      padding-left: var(--space-lg);
+    }
+    .statement__text {
+      font-size: var(--text-3xl);
+    }
   }
 
   /* ─── Misja ─── */
