@@ -39,7 +39,11 @@ const schemas = [
 
   <!-- ════════ HERO ════════ -->
   <section class="hero">
-    <div class="container container--wide">
+    <div class="hero__media">
+      <video class="hero__video" autoplay muted loop playsinline poster="/images/photos/team-photo.jpg" src="https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b%2F67990446b15b73b11162be7b_426_MY_SOURCE_SHORT_online_15_01_2025_1080p_eug_38_web-transcode.mp4"></video>
+    </div>
+    <div class="hero__overlay" aria-hidden="true"></div>
+    <div class="container container--wide hero__content">
       <span class="hero__label label" data-reveal="none">mysource</span>
       <h1 class="hero__title" data-reveal-words data-reveal-delay="100">
         Przygotowujemy organizacje na przyszłość poprzez budowanie <em>ludzkiej gotowości</em>: fizycznej, psychicznej i poznawczej
@@ -50,10 +54,6 @@ const schemas = [
       <div class="hero__scroll-hint scroll-indicator" data-reveal="none" data-reveal-delay="800">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
       </div>
-    </div>
-    <!-- Full-bleed video/animation slot -->
-    <div class="hero__media" data-reveal>
-      <video class="hero__video" autoplay muted loop playsinline poster="/images/photos/team-photo.jpg" src="https://cdn.prod.website-files.com/66aa6a4241e2b2382ff3a79b%2F67990446b15b73b11162be7b_426_MY_SOURCE_SHORT_online_15_01_2025_1080p_eug_38_web-transcode.mp4"></video>
     </div>
   </section>
 
@@ -209,25 +209,21 @@ const schemas = [
 <style>
   /* ─── Hero ─── */
   .hero {
-    padding-top: var(--space-4xl);
-    padding-bottom: 0;
-    background-color: var(--cream);
     position: relative;
-  }
-
-  .hero__label {
-    display: block;
-    margin-bottom: var(--space-lg);
-    color: var(--grey);
-    font-size: var(--text-sm);
+    min-height: clamp(600px, 92vh, 900px);
+    overflow: hidden;
+    background-color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .hero__media {
-    width: 100%;
-    aspect-ratio: 21 / 9;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
     overflow: hidden;
     background-color: var(--ink);
-    margin-top: var(--space-3xl);
   }
 
   .hero__video {
@@ -237,28 +233,54 @@ const schemas = [
     display: block;
   }
 
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      100deg,
+      rgba(10, 22, 40, 0.75) 0%,
+      rgba(10, 22, 40, 0.55) 45%,
+      rgba(10, 22, 40, 0.2) 100%
+    );
+    pointer-events: none;
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    padding-block: clamp(3rem, 8vw, 6rem);
+  }
+
+  .hero__label {
+    display: block;
+    margin-bottom: var(--space-lg);
+    color: var(--sand);
+    font-size: var(--text-sm);
+  }
+
   .hero__title {
     font-family: var(--font-display-light);
     font-size: var(--text-5xl);
     font-weight: 400;
     letter-spacing: -0.035em;
     line-height: 1.1;
-    color: var(--ink);
+    color: var(--white);
     max-width: 28ch;
     margin-bottom: var(--space-2xl);
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
   }
 
   .hero__lead {
     font-size: var(--text-lg);
     line-height: 1.6;
-    color: var(--grey);
+    color: rgba(255, 255, 255, 0.8);
     max-width: 42ch;
   }
 
   .hero__scroll-hint {
     margin-top: var(--space-2xl);
-    color: var(--grey);
-    opacity: 0.5;
+    color: rgba(255, 255, 255, 0.6);
   }
 
   /* ─── Manifesto ─── */
