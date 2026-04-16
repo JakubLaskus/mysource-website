@@ -87,45 +87,55 @@ const schemas = [
         <h2 class="services__title" data-reveal-words data-reveal-delay="100">Dwa obszary. Jeden cel.</h2>
       </div>
 
-      <div class="services__grid">
-        <!-- LAB -->
-        <div class="services__item">
-          <div class="services__item-meta" data-reveal="left">
-            <span class="services__number font-mono" data-reveal-counter="1" data-counter-suffix="" style="min-width:2ch;">0</span>
-            <span class="label" style="color: var(--sage-dark);">LAB</span>
-          </div>
-          <div class="services__item-content">
-            <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Szkolenia i warsztaty dla pracowników i liderów</h3></div>
-            <p class="services__item-desc" data-reveal data-reveal-delay="150">
-              Stawiamy człowieka w centrum organizacji. Nasze szkolenia podzieliliśmy na trzy kluczowe obszary — wellbeing, transformacja technologiczna i przywództwo.
-            </p>
-            <div class="services__tags" data-reveal-stagger>
-              <span class="tag tag--sage">Wellbeing</span>
-              <span class="tag tag--ember">Transformacja</span>
-              <span class="tag tag--mist">Liderzy</span>
-            </div>
-            <a href="/oferta" class="btn btn--ghost" data-reveal data-reveal-delay="300">Poznaj ofertę szkoleń</a>
-          </div>
+      <!-- LAB -->
+      <a href="/oferta" class="services__row" data-reveal>
+        <div class="services__row-side">
+          <span class="services__num">01</span>
+          <span class="services__tag label">LAB</span>
         </div>
+        <div class="services__row-main">
+          <h3 class="services__row-title">
+            <span class="services__row-kicker">Szkolenia i warsztaty</span>
+            dla pracowników i&nbsp;liderów
+          </h3>
+          <p class="services__row-desc">
+            Stawiamy człowieka w centrum organizacji. Trzy kluczowe obszary: wellbeing, transformacja technologiczna i&nbsp;przywództwo.
+          </p>
+          <ul class="services__chips">
+            <li>Wellbeing</li>
+            <li>Transformacja</li>
+            <li>Liderzy</li>
+          </ul>
+        </div>
+        <span class="services__arrow" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
 
-        <!-- AI READINESS -->
-        <div class="services__item">
-          <div class="services__item-meta" data-reveal="left">
-            <span class="services__number font-mono" data-reveal-counter="2" data-counter-suffix="" style="min-width:2ch;">0</span>
-            <span class="label" style="color: var(--ember);">AI Readiness</span>
-          </div>
-          <div class="services__item-content">
-            <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Diagnostyka transformacji AI</h3></div>
-            <p class="services__item-desc" data-reveal data-reveal-delay="150">
-              RADAR to kompleksowe narzędzie diagnostyczne, które bada gotowość organizacji do transformacji AI z perspektywy ludzi — pracowników, zespołów i kultury organizacyjnej.
-            </p>
-            <div class="services__tags" data-reveal-stagger>
-              <span class="tag tag--ember">RADAR</span>
-            </div>
-            <a href="/o-nas" class="btn btn--ghost" data-reveal data-reveal-delay="300">Dowiedz się więcej</a>
-          </div>
+      <!-- AI READINESS -->
+      <a href="/o-nas" class="services__row services__row--alt" data-reveal>
+        <div class="services__row-side">
+          <span class="services__num">02</span>
+          <span class="services__tag label">AI Readiness</span>
         </div>
-      </div>
+        <div class="services__row-main">
+          <h3 class="services__row-title">
+            <span class="services__row-kicker">Diagnostyka</span>
+            transformacji AI
+          </h3>
+          <p class="services__row-desc">
+            RADAR — narzędzie badające gotowość organizacji do&nbsp;transformacji AI z&nbsp;perspektywy ludzi, zespołów i&nbsp;kultury.
+          </p>
+          <ul class="services__chips">
+            <li>RADAR</li>
+            <li>Human Readiness</li>
+            <li>HAIRI Index</li>
+          </ul>
+        </div>
+        <span class="services__arrow" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
+      </a>
     </div>
   </section>
 
@@ -332,74 +342,123 @@ const schemas = [
     line-height: 1.15;
   }
 
-  .services__grid {
+  /* Editorial row layout — alternating, huge number accent */
+  .services__row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-3xl);
-    align-items: stretch;
+    grid-template-columns: minmax(140px, 1fr) 7fr auto;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    align-items: start;
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid rgba(26, 26, 25, 0.12);
+    color: var(--ink);
+    transition: background-color 0.3s ease;
+    position: relative;
   }
 
-  .services__item {
+  .services__row:last-child {
+    border-bottom: 1px solid rgba(26, 26, 25, 0.12);
+  }
+
+  .services__row:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+
+  .services__row--alt {
+    color: var(--ink);
+  }
+
+  .services__row-side {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .services__num {
+    font-family: var(--font-display-light);
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+    color: var(--sand);
+  }
+
+  .services__row--alt .services__num {
+    color: var(--ember-light);
+  }
+
+  .services__tag {
+    color: var(--sage-dark);
+  }
+
+  .services__row--alt .services__tag {
+    color: var(--ember);
+  }
+
+  .services__row-main {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
-    padding-block: var(--space-xl);
-    background: transparent;
-    border: none;
-    border-radius: 0;
   }
 
-  .services__item-meta {
-    display: flex;
-    align-items: baseline;
-    gap: var(--space-md);
-    padding-bottom: var(--space-md);
-    border-bottom: 1px solid rgba(26, 26, 25, 0.08);
+  .services__row-title {
+    font-family: var(--font-display-light);
+    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    font-weight: 400;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0;
+    max-width: 24ch;
   }
 
-  .services__number {
-    font-size: var(--text-3xl);
-    font-weight: 700;
-    color: var(--sand);
-    line-height: 1;
+  .services__row-kicker {
+    display: block;
+    font-style: italic;
+    color: var(--grey);
+    font-size: 0.82em;
+    margin-bottom: 0.15em;
   }
 
-  .services__item-content {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
-    flex: 1;
-  }
-
-  .services__item-title {
-    font-size: var(--text-3xl);
-    line-height: 1.15;
-    margin-bottom: var(--space-sm);
-  }
-
-  .services__item-desc {
+  .services__row-desc {
     font-size: var(--text-base);
     line-height: 1.7;
     color: var(--grey);
-    max-width: none;
-    flex-grow: 1;
+    max-width: 55ch;
+    margin: 0;
   }
 
-  .services__tags {
+  .services__chips {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-sm);
-    margin-top: var(--space-sm);
+    gap: var(--space-md);
+    list-style: none;
+    padding: 0;
+    margin: var(--space-xs) 0 0;
   }
 
-  .services__item .btn--ghost {
-    margin-top: auto;
-    align-self: flex-start;
+  .services__chips li {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--grey);
+    padding-right: var(--space-md);
+    border-right: 1px solid rgba(26, 26, 25, 0.15);
   }
 
-  .services__divider {
-    height: 1px;
-    background: currentColor;
+  .services__chips li:last-child {
+    border-right: 0;
+    padding-right: 0;
+  }
+
+  .services__arrow {
+    align-self: center;
+    color: var(--ink);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .services__row:hover .services__arrow {
+    transform: translateX(8px);
+    color: var(--ember);
   }
 
   /* ─── Statement (dark) ─── */
@@ -589,17 +648,25 @@ const schemas = [
       gap: var(--space-lg);
     }
 
-    .services__grid {
+    .services__row {
       grid-template-columns: 1fr;
-      gap: var(--space-xl);
+      gap: var(--space-lg);
     }
 
-    .services__item {
-      padding-block: var(--space-md);
+    .services__arrow {
+      align-self: flex-start;
     }
 
-    .services__item-title {
+    .services__row-title {
       font-size: var(--text-2xl);
+    }
+
+    .services__chips {
+      gap: var(--space-sm);
+    }
+
+    .services__chips li {
+      padding-right: var(--space-sm);
     }
 
     .misja__founders {
