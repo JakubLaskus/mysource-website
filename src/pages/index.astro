@@ -317,16 +317,10 @@ const schemas = [
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
-    padding: var(--space-2xl);
-    background: var(--white);
-    border: 1px solid rgba(26, 26, 25, 0.08);
-    border-radius: var(--radius-lg, 12px);
-    transition: box-shadow 0.3s, transform 0.3s;
-  }
-
-  .services__item:hover {
-    box-shadow: 0 12px 40px var(--shadow-md);
-    transform: translateY(-2px);
+    padding-block: var(--space-xl);
+    background: transparent;
+    border: none;
+    border-radius: 0;
   }
 
   .services__item-meta {
@@ -535,7 +529,7 @@ const schemas = [
     }
 
     .services__item {
-      padding: var(--space-xl);
+      padding-block: var(--space-md);
     }
 
     .services__item-title {
