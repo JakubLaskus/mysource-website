@@ -175,7 +175,9 @@ const schemas = [
       <div class="team__grid" data-reveal-stagger>
         {radarExperts.map((expert) => (
           <div class="team__member">
-            <img src={expert.image} alt={expert.name} class="team__avatar" width="140" height="140" loading="lazy" />
+            <div class="team__avatar team__avatar--placeholder" aria-hidden="true">
+              <span class="team__initials">{expert.name.split(' ').filter(w => w && !/^(dr|mgr|prof\.?)$/i.test(w)).slice(0, 2).map(w => w[0]).join('')}</span>
+            </div>
             <p class="team__name">{expert.name}</p>
             <p class="team__role text-muted">{expert.role}</p>
           </div>
@@ -372,6 +374,22 @@ const schemas = [
     background: var(--white);
     margin-bottom: var(--space-md);
     object-fit: cover;
+  }
+
+  .team__avatar--placeholder {
+    background: var(--sand-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed rgba(26, 26, 25, 0.18);
+  }
+
+  .team__initials {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 400;
+    color: var(--grey);
+    letter-spacing: 0.05em;
   }
 
   .team__name {
