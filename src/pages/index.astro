@@ -87,43 +87,43 @@ const schemas = [
         <h2 class="services__title" data-reveal-words data-reveal-delay="100">Dwa obszary. Jeden cel.</h2>
       </div>
 
-      <!-- LAB -->
-      <div class="services__item" data-hover-lift>
-        <div class="services__item-meta" data-reveal="left">
-          <span class="services__number font-mono" data-reveal-counter="1" data-counter-suffix="" style="min-width:2ch;">0</span>
-          <span class="label" style="color: var(--sage-dark);">LAB</span>
-        </div>
-        <div class="services__item-content">
-          <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Szkolenia i warsztaty dla pracowników i liderów</h3></div>
-          <p class="services__item-desc" data-reveal data-reveal-delay="150">
-            Stawiamy człowieka w centrum organizacji. Nasze szkolenia podzieliliśmy na trzy kluczowe obszary — wellbeing, transformacja technologiczna i przywództwo.
-          </p>
-          <div class="services__tags" data-reveal-stagger>
-            <span class="tag tag--sage">Wellbeing</span>
-            <span class="tag tag--ember">Transformacja</span>
-            <span class="tag tag--mist">Liderzy</span>
+      <div class="services__grid">
+        <!-- LAB -->
+        <div class="services__item" data-hover-lift>
+          <div class="services__item-meta" data-reveal="left">
+            <span class="services__number font-mono" data-reveal-counter="1" data-counter-suffix="" style="min-width:2ch;">0</span>
+            <span class="label" style="color: var(--sage-dark);">LAB</span>
           </div>
-          <a href="/oferta" class="btn btn--ghost" data-reveal data-reveal-delay="300">Poznaj ofertę szkoleń</a>
-        </div>
-      </div>
-
-      <div class="services__divider" data-reveal-line style="color: var(--sand);"></div>
-
-      <!-- AI READINESS -->
-      <div class="services__item services__item--reverse" data-hover-lift>
-        <div class="services__item-meta" data-reveal="left">
-          <span class="services__number font-mono" data-reveal-counter="2" data-counter-suffix="" style="min-width:2ch;">0</span>
-          <span class="label" style="color: var(--ember);">AI Readiness</span>
-        </div>
-        <div class="services__item-content">
-          <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Diagnostyka transformacji AI</h3></div>
-          <p class="services__item-desc" data-reveal data-reveal-delay="150">
-            RADAR to kompleksowe narzędzie diagnostyczne, które bada gotowość organizacji do transformacji AI z perspektywy ludzi — pracowników, zespołów i kultury organizacyjnej.
-          </p>
-          <div class="services__tags" data-reveal-stagger>
-            <span class="tag tag--ember">RADAR</span>
+          <div class="services__item-content">
+            <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Szkolenia i warsztaty dla pracowników i liderów</h3></div>
+            <p class="services__item-desc" data-reveal data-reveal-delay="150">
+              Stawiamy człowieka w centrum organizacji. Nasze szkolenia podzieliliśmy na trzy kluczowe obszary — wellbeing, transformacja technologiczna i przywództwo.
+            </p>
+            <div class="services__tags" data-reveal-stagger>
+              <span class="tag tag--sage">Wellbeing</span>
+              <span class="tag tag--ember">Transformacja</span>
+              <span class="tag tag--mist">Liderzy</span>
+            </div>
+            <a href="/oferta" class="btn btn--ghost" data-reveal data-reveal-delay="300">Poznaj ofertę szkoleń</a>
           </div>
-          <a href="/o-nas" class="btn btn--ghost" data-reveal data-reveal-delay="300">Dowiedz się więcej</a>
+        </div>
+
+        <!-- AI READINESS -->
+        <div class="services__item" data-hover-lift>
+          <div class="services__item-meta" data-reveal="left">
+            <span class="services__number font-mono" data-reveal-counter="2" data-counter-suffix="" style="min-width:2ch;">0</span>
+            <span class="label" style="color: var(--ember);">AI Readiness</span>
+          </div>
+          <div class="services__item-content">
+            <div class="reveal-clip"><h3 class="services__item-title" data-reveal="clip-up">Diagnostyka transformacji AI</h3></div>
+            <p class="services__item-desc" data-reveal data-reveal-delay="150">
+              RADAR to kompleksowe narzędzie diagnostyczne, które bada gotowość organizacji do transformacji AI z perspektywy ludzi — pracowników, zespołów i kultury organizacyjnej.
+            </p>
+            <div class="services__tags" data-reveal-stagger>
+              <span class="tag tag--ember">RADAR</span>
+            </div>
+            <a href="/o-nas" class="btn btn--ghost" data-reveal data-reveal-delay="300">Dowiedz się więcej</a>
+          </div>
         </div>
       </div>
     </div>
@@ -306,53 +306,75 @@ const schemas = [
     line-height: 1.15;
   }
 
-  .services__item {
+  .services__grid {
     display: grid;
-    grid-template-columns: 3fr 7fr;
+    grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
-    padding-block: var(--space-3xl);
-    align-items: start;
-    border-radius: var(--radius-lg, 12px);
-    padding-inline: var(--space-xl);
-    margin-inline: calc(-1 * var(--space-xl));
+    align-items: stretch;
   }
 
-  .services__item--reverse {
-    grid-template-columns: 3fr 7fr;
+  .services__item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-2xl);
+    background: var(--white);
+    border: 1px solid rgba(26, 26, 25, 0.08);
+    border-radius: var(--radius-lg, 12px);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+
+  .services__item:hover {
+    box-shadow: 0 12px 40px var(--shadow-md);
+    transform: translateY(-2px);
   }
 
   .services__item-meta {
     display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+    align-items: baseline;
+    gap: var(--space-md);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(26, 26, 25, 0.08);
   }
 
   .services__number {
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     font-weight: 700;
     color: var(--sand);
     line-height: 1;
   }
 
+  .services__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    flex: 1;
+  }
+
   .services__item-title {
-    font-size: var(--text-4xl);
+    font-size: var(--text-3xl);
     line-height: 1.15;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-sm);
   }
 
   .services__item-desc {
-    font-size: var(--text-lg);
-    line-height: 1.8;
+    font-size: var(--text-base);
+    line-height: 1.7;
     color: var(--grey);
-    max-width: 55ch;
-    margin-bottom: var(--space-xl);
+    max-width: none;
+    flex-grow: 1;
   }
 
   .services__tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-sm);
-    margin-bottom: var(--space-xl);
+    margin-top: var(--space-sm);
+  }
+
+  .services__item .btn--ghost {
+    margin-top: auto;
+    align-self: flex-start;
   }
 
   .services__divider {
@@ -507,12 +529,17 @@ const schemas = [
       gap: var(--space-lg);
     }
 
-    .services__item,
-    .services__item--reverse {
+    .services__grid {
       grid-template-columns: 1fr;
-      gap: var(--space-lg);
-      padding-inline: 0;
-      margin-inline: 0;
+      gap: var(--space-xl);
+    }
+
+    .services__item {
+      padding: var(--space-xl);
+    }
+
+    .services__item-title {
+      font-size: var(--text-2xl);
     }
 
     .misja__founders {
