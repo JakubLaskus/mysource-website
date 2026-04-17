@@ -62,6 +62,12 @@ const isDark = variant === 'deep';
     filter: brightness(0) saturate(100%);
   }
 
+  /* SVGs ship with internal padding in their viewBoxes;
+     pull the 'source' half left so it butts up against 'my'. */
+  .newsletter__wordmark-part + .newsletter__wordmark-part {
+    margin-left: -0.35em;
+  }
+
   .section--deep .newsletter__wordmark-part {
     filter: none;
   }
