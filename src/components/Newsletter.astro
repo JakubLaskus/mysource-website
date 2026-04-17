@@ -10,7 +10,10 @@ const isDark = variant === 'deep';
 <section class:list={['section newsletter', isDark ? 'section--deep' : 'section--sand']}>
   <div class="container newsletter__inner" data-reveal>
     <div class="newsletter__text">
-      <span class="font-mono" style="font-size: var(--text-xl); font-weight: 700; letter-spacing: 0.05em;">mysource</span>
+      <div class="newsletter__wordmark" aria-label="mysource">
+        <img src="/images/logos/my.svg" alt="" class="newsletter__wordmark-part" />
+        <img src="/images/logos/source.svg" alt="" class="newsletter__wordmark-part" />
+      </div>
       <p class="newsletter__heading">
         Zapisz się do newslettera mysource, aby otrzymywać najświeższe informacje o naszej ofercie i treściach, które mogą Cię zainteresować.
       </p>
@@ -42,6 +45,25 @@ const isDark = variant === 'deep';
     grid-template-columns: 2fr 3fr;
     gap: var(--space-3xl);
     align-items: start;
+  }
+
+  .newsletter__wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15em;
+    height: 1.6rem;
+  }
+
+  .newsletter__wordmark-part {
+    height: 100%;
+    width: auto;
+    display: block;
+    /* flip the white SVG fill to ink for the sand background */
+    filter: brightness(0) saturate(100%);
+  }
+
+  .section--deep .newsletter__wordmark-part {
+    filter: none;
   }
 
   .newsletter__heading {
