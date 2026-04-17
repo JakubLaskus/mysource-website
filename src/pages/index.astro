@@ -476,17 +476,19 @@ const schemas = [
     position: absolute;
     right: clamp(1.5rem, 3vw, 3rem);
     bottom: clamp(2rem, 6vw, 4rem);
-    max-width: min(22ch, 34vw);
+    max-width: min(14ch, 32vw);
     font-family: var(--font-display);
     font-size: clamp(1.5rem, 2.4vw, 2.25rem);
     font-style: italic;
     font-weight: 400;
     letter-spacing: -0.01em;
-    line-height: 1.3;
+    line-height: 1.25;
     color: var(--ink);
     margin: 0;
     text-transform: none;
     text-align: right;
+    text-wrap: balance;
+    text-shadow: 0 1px 12px rgba(250, 246, 241, 0.6);
   }
 
   @media (max-width: 768px) {
@@ -494,10 +496,10 @@ const schemas = [
       min-height: 40vh;
     }
     .statement__text {
-      left: var(--content-padding);
+      left: auto;
       right: var(--content-padding);
       bottom: var(--space-xl);
-      max-width: none;
+      max-width: 16ch;
       font-size: var(--text-xl);
     }
   }
